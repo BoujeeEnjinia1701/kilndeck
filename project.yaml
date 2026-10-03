@@ -1,0 +1,37 @@
+# Card metadata consumed by https://designmolecule.com
+name: KilnDeck
+slug: kilndeck
+repo: BoujeeEnjinia1701/kilndeck         # GitHub repository, shown on every drawing and render
+area: Sustainable housing
+trl: 3                   # Technology Readiness Level, see .kit/STANDARDS.md section 9
+trl_target: 3
+design_state: constructable   # STANDARDS section 18; made constructable 2026-10-03 (KND-DDR-002)
+trl_evidence:
+  - docs/01-problem.md
+  - docs/02-concept.md
+  - docs/03-requirements.md
+  - docs/decisions/0001-trl2-review-decisions.md
+  - docs/decisions/0002-design-for-construction.md
+  - docs/04-calcs/01-sizing.md
+  - docs/04-calcs/sizing.py
+  - cad/src/model.py
+  - cad/step/kilndeck-assembly.step
+  - cad/drawings/KND-DWG-001.svg
+  - cad/drawings/KND-DWG-001.pdf
+  - bom/bom.csv
+  - docs/05-build-plan.md
+  - docs/06-design-decisions.md
+  - docs/05-build-plan/overview.png
+  - cad/src/build_plan_media.py
+shortlisted: false
+pitch: >-
+  Carries kiln firemen on a railed rolling deck so they feed fuel without standing on the ash crust over the fire.
+problem: >-
+  Firemen on bull's trench brick kilns stand and walk on the hot ash crust over the fire to feed fuel through holes in the kiln top, for hours at a time. A slip or a weak spot in the crust can drop them into the burning kiln.
+budget_usd: 3500  # value-engineering target (STANDARDS section 18); estimated cost of the constructable design USD 2,627
+difficulty: 4  # 1 easiest, 5 hardest
+hero_image: media/hero.png
+licenses:
+  hardware: CERN-OHL-S-2.0
+  software: MIT
+tags: [open-hardware, brick-kilns, occupational-safety, sustainable-housing, hand-powered, south-asia]
