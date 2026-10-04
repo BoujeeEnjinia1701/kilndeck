@@ -1,9 +1,9 @@
 version = 1
-SPDX-PackageName = "Design Molecule open hardware"
+SPDX-PackageName = "kilndeck"
 SPDX-PackageSupplier = "Amish Chadha <amish@designmolecule.com>"
-SPDX-PackageDownloadLocation = "https://github.com/BoujeeEnjinia1701"
+SPDX-PackageDownloadLocation = "https://github.com/BoujeeEnjinia1701/kilndeck"
 
-# Hardware designs, documentation, media and data: CERN-OHL-S-2.0
+# Designs, documentation, media and data: CERN-OHL-S-2.0
 [[annotations]]
 path = "**"
 precedence = "closest"
