@@ -1,6 +1,7 @@
-"""KilnDeck concept media from the TRL 3 parametric model (constructable design, KND-DDR-002).
+"""KilnDeck concept media from the kit 1.9 D3 model of the chosen design (option A, constructable, KND-DDR-002).
 
 Run from the repo root:  python cad/src/concept_media.py [hero|cutaway|exploded|flow|web|blueprint ...]
+(python cad/src/concept_media.py web  writes only media/model.glb and media/viewer.html, at the kit's 0.2 mm web tolerance)
 With no argument it draws everything; on a small machine run one picture per process. Geometry comes
 from cad/src/model.py; the fuel flow values come from KND-CAL-001 (docs/04-calcs/sizing.py). The
 pictures are made with the pieces of .kit/concept.py render_all, one at a time.
@@ -24,8 +25,23 @@ PROJECT, TITLE, DWG, DATE = "KilnDeck", "Rolling fuel-feeding deck for brick kil
 MD = ROOT / "media"
 
 
-def parts():
-    return [Part(n, s, c, b, e) for n, s, c, b, e in M.build_parts()]
+def parts(web=False):
+    """One Part per component group of the D3 model of the chosen option (components(CHOSEN)), every plate, bolt and
+    weld bead included, named and numbered as in bom/bom.csv so the exploded legend matches it."""
+    from build123d import Compound
+    import knd_option_a
+    names = dict((k, v[1]) for k, v in M.BOM.items())
+    names["storm"] = "Storm clamps and tie-downs"
+    by = {}
+    for q in M.components(M.CHOSEN):
+        if q["kind"] == "context" or (web and q["kind"] in ("fastener", "weld")):
+            continue   # the web model leaves out the 1,300 fasteners and weld beads to stay under about 20 MB
+        by.setdefault(q["group"], []).append(q)
+    out = []
+    for key, qs in by.items():
+        col = M.COLORS.get(key, qs[0]["color"])
+        out.append(Part(names.get(key, key), Compound([q["shape"] for q in qs]), col, M.BOM_LINE.get(key), knd_option_a.EXPLODE.get(key, (0, 0, 0))))
+    return out
 
 
 def person():
@@ -46,7 +62,7 @@ def cutaway():
     keep = M.bx(-3000, 3000, c, 8000, -100, 3000)
     ps = []
     for p in parts():
-        if p.name.startswith(("Levelling", "Track modules", "Track end")):
+        if p.name.startswith(("Levelling", "Track modules", "Track end", "Storm")):
             continue
         try:
             s = p.shape & keep
@@ -65,7 +81,17 @@ def exploded():
 
 
 def web():
-    return K.export_web_model(parts(), "media", title=f"{PROJECT}: {TITLE}")
+    import build123d
+    real = build123d.export_gltf
+
+    def coarse(shape, path, binary=True, linear_deflection=0.2, angular_deflection=0.35):
+        # kit 1.9.1 hard-codes 0.2 mm, which gives 39 MB for this model; 1.0 mm keeps the viewer file near 20 MB
+        return real(shape, path, binary=binary, linear_deflection=1.0, angular_deflection=0.7)
+    build123d.export_gltf = coarse
+    try:
+        return K.export_web_model(parts(web=True), "media", title=f"{PROJECT}: {TITLE}")
+    finally:
+        build123d.export_gltf = real
 
 
 def flow():
@@ -92,12 +118,14 @@ def blueprint():
     h = sizing.hopper()
     r = sizing.rotor()
     L = M.levels()
-    ps = parts()
+    # hidden-line views are projected from the main-dimension solids of the same model (M.assembly(), as the general
+    # arrangement drawing does): projecting 1,800 fasteners and weld beads takes hours and adds no outline
+    ps = [Part(c.name, c.shape, c.color, None) for c in M.assembly()]
     shown = ps + [person()]
     views = project_views(Compound(children=[p.shape for p in ps]), MD / "_views")
     views["iso"] = project_views(Compound(children=[p.shape for p in shown]), MD / "_views_fig")["iso"]
     s = Sheet(project=PROJECT, title=TITLE, dwg_no=DWG, rev="P1", author="Amish Chadha", date=DATE, theme="blueprint",
-              material="Massing model for concept communication",
+              material="Concept sheet from the D3 model (kit 1.9)",
               revisions=[("P1", "Concept sheet from the constructable TRL 3 model", DATE, "AC")])
     s.add_ortho(views)
     s.add_svg(views["iso"], 276, 37, 140, 113, label="Isometric view", sublabel="Not to scale; figure is a 1.75 m person on the deck")

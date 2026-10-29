@@ -31,6 +31,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path[:0] = [str(ROOT / "cad/src"), str(ROOT / ".kit")]
 
 # Top-level parameters (mm). Edit these, not the geometry below.
 PARAMS = {
@@ -48,6 +49,11 @@ PARAMS = {
     #   groove width, groove depth), derailment guard clearance to the channel side
     "TRUCK": (100.0, 50.0, 4.0), "TRUCK_LEN": 1400.0, "WHEELBASE": 1200.0,
     "WHEEL": (100.0, 44.0, 24.0, 5.0), "DERAIL_GAP": 24.0,
+    #   fork carrier plate under the beam over each wheel (thickness); derailment guard bottom edge above the wall
+    #   top (KND-DEC-001 D12: 20 mm, was 30 mm, so the storm clamp screw has a full ring of guard round it)
+    "CARRIER_T": 10.0, "GUARD_Z0": 20.0,
+    #   storm clamp screw height above the wall top (KND-DEC-001 D12)
+    "CLAMP_Z": 40.0,
     #   the inner-wall wheels have a 44 mm wide groove (64 mm wheel) so the deck can float +/-12 mm across
     #   the trench for heat and for small errors in the track gauge; the outer-wall wheels guide
     "WHEEL_IN_GROOVE": 44.0,
@@ -59,6 +65,11 @@ PARAMS = {
     "RAIL_H": 1100.0, "KNEE_H": 550.0,
     # 7 bearers: panel bearers SHS 40 x 40 x 3; frame bearers RHS 60 x 40 x 4 with end plates
     "FRAME_BEARER": (60.0, 40.0, 4.0),
+    #   bearer cleats and frame bearer end plates reach down to this height above the wall top, so both bolt rows sit
+    #   below the bottom chord and the carriage guide rollers run on a clear chord face (KND-DEC-001 D13)
+    "CLEAT_Z0": 190.0,
+    #   ledger angle on the inner face of each end frame bearer that carries the end floor panels (KND-DEC-001 D13)
+    "LEDGER": (40.0, 4.0),
     # 8 floor panels: edge frame angle (leg, t), top tread sheet, insulation, reflective underside
     "PANEL_ANGLE": (40.0, 4.0), "PANEL_TOP": 2.0, "PANEL_BOTTOM": 1.0, "PANEL_GAP": 4.0,
     # 10 travel drive: line shaft (dia, x, z), hand wheel (dia, rim, plane y, centre height above floor)
@@ -370,10 +381,19 @@ def end_truck(p=PARAMS, s=1, step=False):
     parts = [beam]
     wb = p["WHEELBASE"] / 2
     wd, ww, gw, gd = wheel_dims(p, inner=s > 0)
+    zc0 = L["truck0"] - p["CARRIER_T"]
     for x in (-wb, wb):
+        # fork carrier plate under the beam: carries the fork plates and the derailment guards. Over the driven wheel
+        # (x = +wb) the chain to the line shaft passes 51 mm outboard of the track, so the carrier stops short of it and
+        # the outboard guard hangs from a strip beyond the chain
+        if x > 0:
+            parts.append(bx(x - 80, x + 80, min(y - s * 70, y + s * 44), max(y - s * 70, y + s * 44), zc0, L["truck0"]))
+            parts.append(bx(x + 42, x + 80, min(y + s * 44, y + s * 70), max(y + s * 44, y + s * 70), zc0, L["truck0"]))
+        else:
+            parts.append(bx(x - 80, x + 80, y - 70, y + 70, zc0, L["truck0"]))
         for sy in (-1, 1):   # fork plates 8 mm, 3 mm clear of the wheel
             yy0 = y + sy * (ww / 2 + 3)
-            parts.append(bx(x - 60, x + 60, min(yy0, yy0 + sy * 8), max(yy0, yy0 + sy * 8), L["wheel_c"] - 30, L["truck0"])
+            parts.append(bx(x - 60, x + 60, min(yy0, yy0 + sy * 8), max(yy0, yy0 + sy * 8), L["wheel_c"] - 30, zc0)
                          - ycyl(x, L["wheel_c"], yy0 - 10, yy0 + 10, 10.5))
     # seats for the truss feet (10 mm plate, 150 x 200), welded on top
     tx = p["TRUSS_X"]
@@ -390,13 +410,22 @@ def end_truck(p=PARAMS, s=1, step=False):
     for x in (-wb, wb):
         for sy in (-1, 1):
             yy0 = y + sy * (cw + g)
-            parts.append(bx(x - 80, x + 80, min(yy0, yy0 + sy * 6), max(yy0, yy0 + sy * 6), 30.0, L["truck0"]))
+            parts.append(bx(x - 80, x + 80, min(yy0, yy0 + sy * 6), max(yy0, yy0 + sy * 6), p["GUARD_Z0"], zc0))
+        # storm clamp (KND-DEC-001 D12): a fixed jaw inside the outboard guard, 2 mm off the channel, and a screw with a
+        # pad through the inboard guard that squeezes the channel against the jaw
+        yo_, yi_ = y + s * (cw + g), y - s * (cw + g)
+        parts.append(bx(x - 30, x + 30, min(yo_, y + s * (cw + 2)), max(yo_, y + s * (cw + 2)), p["CLAMP_Z"] - 20, p["CLAMP_Z"] + 20))
+        parts.append(ycyl(x, p["CLAMP_Z"], min(yi_ - s * 30, y - s * cw), max(yi_ - s * 30, y - s * cw), 8))
+    # lashing lugs for the storm tie-down chains, on the beam top at both ends (KND-DEC-001 D12)
+    for sx_ in (-1, 1):
+        parts.append(bx(sx_ * 680 if sx_ > 0 else -690, sx_ * 690 if sx_ > 0 else -680, y - 25, y + 25, L["truck1"], L["truck1"] + 60)
+                     - xcyl(y, L["truck1"] + 40, -700, 700, 11))
     if step:   # boarding step on the outer side, 6 mm chequer plate on two brackets
         yo = y + s * (tw / 2)
         parts.append(bx(-250, 250, min(yo + s * 135, yo + s * 375), max(yo + s * 135, yo + s * 375), L["truck0"], L["truck0"] + 4))
-        for x in (-220, 190):
-            parts.append(bx(x, x + 30, min(yo, yo + s * 135), max(yo, yo + s * 135), L["truck0"], L["truck1"]))
-            parts.append(bx(x, x + 30, min(yo + s * 135, yo + s * 375), max(yo + s * 135, yo + s * 375), L["truck0"] + 4, L["truck0"] + 24))
+        for x in (-220, 190):   # flat bar 30 x 8: an upright welded to the beam face and an arm under the step plate
+            parts.append(bx(x, x + 30, min(yo, yo + s * 8), max(yo, yo + s * 8), L["truck0"] - 8, L["truck1"]))
+            parts.append(bx(x, x + 30, min(yo + s * 8, yo + s * 375), max(yo + s * 8, yo + s * 375), L["truck0"] - 8, L["truck0"]))
     return fuse(parts)
 
 
@@ -431,7 +460,7 @@ def _wheels(p):
     return comp_of(out)
 
 
-def truss_module(p=PARAMS, side=1, k=0):
+def truss_module(p=PARAMS, side=1, k=0, toe=True):
     """One side truss module: bottom chord, top chord (the guardrail top rail), two end verticals,
     one diagonal, knee rail and toe board, welded as one piece; foot plates on the end modules."""
     L = levels(p)
@@ -455,7 +484,8 @@ def truss_module(p=PARAMS, side=1, k=0):
     # toe board: 2 mm plate standing on the chord's inner edge, 150 mm above the floor
     tt = p["TOE"][1]
     xi = xc - side * cw / 2
-    parts.append(bx(min(xi, xi + side * tt), max(xi, xi + side * tt), y0 + vw, y1 - vw, L["chord1"], L["floor"] + p["TOE"][0]))
+    if toe:
+        parts.append(bx(min(xi, xi + side * tt), max(xi, xi + side * tt), y0 + vw + 30, y1 - vw - 30, L["chord1"], L["floor"] + p["TOE"][0]))
     # foot plates (10 mm, 150 x 200) under the chord at the bridge ends, over the truck seats
     half = p["BRIDGE_L"] / 2
     yt = p["GAUGE"] / 2
@@ -465,7 +495,7 @@ def truss_module(p=PARAMS, side=1, k=0):
         parts.append(bx(xc - 75, xc + 75, yt - 100, yt + 60, L["seat1"], L["chord0"]))
     # bearer cleats: 8 mm plates on the chord's inner face at each end, reaching 60 mm below it
     for yy in (y0 + vw / 2, y1 - vw / 2):
-        parts.append(bx(min(xi, xi - side * 8), max(xi, xi - side * 8), yy - 40, yy + 40, L["chord0"] - 40, L["chord1"]))
+        parts.append(bx(min(xi, xi - side * 8), max(xi, xi - side * 8), yy - 40, yy + 40, p["CLEAT_Z0"], L["chord1"]))
     # carriage rail brackets on side B: shelf plates on the outer face of each end vertical
     if side > 0:
         g = carriage_frame_geometry(p)
@@ -487,8 +517,15 @@ def bearer(p=PARAMS, y=0.0, kind="panel"):
     if kind == "frame":
         h, w, t = p["FRAME_BEARER"]
         body = tube_x(y, L["chord1"] - h / 2, -xi + 8, xi - 8, w, t, h)
-        ends = [bx(s * (xi - 8) if s > 0 else -xi, s * xi if s > 0 else -xi + 8, y - 40, y + 40, L["chord0"] - 40, L["chord1"])
+        ends = [bx(s * (xi - 8) if s > 0 else -xi, s * xi if s > 0 else -xi + 8, y - 40, y + 40, p["CLEAT_Z0"], L["chord1"])
                 for s in (-1, 1)]
+        half = p["BRIDGE_L"] / 2
+        if abs(abs(y) - (half - p["VERT"][0] / 2)) < 1:      # end bearer: ledger angle on its inner face for the end panels
+            a, t = p["LEDGER"]
+            s = 1 if y > 0 else -1
+            yf = y - s * w / 2
+            ends.append(bx(-xi + 8, xi - 8, min(yf, yf - s * t), max(yf, yf - s * t), L["chord1"] - a, L["chord1"]))
+            ends.append(bx(-xi + 8, xi - 8, min(yf, yf - s * a), max(yf, yf - s * a), L["chord1"] - t, L["chord1"]))
         return fuse([body] + ends)
     return tube_x(y, L["chord1"] - 20, -(tx - cw / 2), tx - cw / 2, 40.0, 3.0)
 
@@ -576,8 +613,9 @@ def end_frame(p=PARAMS, s=1, gate=False):
         yt = ya if s > 0 else yb - 2
         parts.append(bx(-pi, pi, yt, yt + 2, L["chord1"], L["floor"] + p["TOE"][0]))
         return fuse(parts), None
-    # gate leaf: 30 x 30 x 3 frame with a mid rail and a 2 mm toe plate, 5 mm clear of each post
-    gx0, gx1 = -pi + 5, pi - 5
+    # gate leaf: 30 x 30 x 3 frame with a mid rail and a 2 mm toe plate, 15 mm clear of each post (room for the post
+    # bolt heads, KND-DEC-001 D13)
+    gx0, gx1 = -pi + 15, pi - 15
     gz0, gz1 = L["floor"] + 10, L["top_rail1"] - 5
     leaf = [tube_x(yc, gz1 - 15, gx0, gx1, 30.0, 3.0), tube_x(yc, gz0 + 15, gx0, gx1, 30.0, 3.0),
             tube_x(yc, L["knee"], gx0 + 30, gx1 - 30, 30.0, 3.0),
@@ -599,13 +637,21 @@ def _drive(p):
     yend = yt + p["TRUCK"][1] / 2 + 26 + 4
     shaft = [ycyl(sx, sz, -yend - 4, yend + 4, sd / 2)]
     blocks = []
+    half = p["BRIDGE_L"] / 2
     for y, kind in bearer_positions(p):
-        if kind != "frame":
+        if kind != "frame" or abs(abs(y) - (half - p["VERT"][0] / 2)) < 1:
             continue
         fb = p["FRAME_BEARER"][0]
-        z_b = L["chord1"] - fb
-        blocks.append(bx(sx - 60, sx + 60, y - 19, y + 19, sz - 20, sz + 20) - ycyl(sx, sz, y - 20, y + 20, sd / 2 + 0.5))
-        blocks.append(bx(sx - 60, sx + 60, y - 19, y + 19, sz + 20, z_b))
+        sg = 1 if y <= 0 else -1
+        yp = y + sg * (p["FRAME_BEARER"][1] / 2 + 20)      # beside the bearer, on a hanger plate (KND-DEC-001 D13)
+        blocks.append(bx(sx - 70, sx + 70, yp - 19, yp + 19, sz + 21.5, sz + 36.5) + ycyl(sx, sz, yp - 19, yp + 19, 33)
+                      - ycyl(sx, sz, yp - 20, yp + 20, sd / 2 + 0.5))
+        blocks.append(bx(sx - 80, sx + 80, min(yp - sg * 20, yp + sg * 20), max(yp - sg * 20, yp + sg * 20), sz + 36.5, sz + 46.5))
+    # flange bearings on the inboard faces of the two truck beams carry the shaft ends (KND-DEC-001 D13)
+    for s_ in (-1, 1):
+        yb_ = s_ * (yt - p["TRUCK"][1] / 2)
+        blocks.append(bx(sx - 70, sx + 70, min(yb_, yb_ - s_ * 8), max(yb_, yb_ - s_ * 8), sz - 20, sz + 20)
+                      + ycyl(sx, sz, min(yb_, yb_ - s_ * 20), max(yb_, yb_ - s_ * 20), 30) - ycyl(sx, sz, yb_ - 40, yb_ + 40, sd / 2 + 0.5))
     ends = []
     wb = p["WHEELBASE"] / 2
     r = p["SPROCKET_D"] / 2
@@ -615,11 +661,11 @@ def _drive(p):
                     - ycyl(wb, L["wheel_c"], yc - 10, yc + 10, 10))
         # chain guard: 2 mm sheet over the outside of the drive, outside the derailment guard
         go = yc + s * 20
-        ends.append(bx(sx - r - 25, wb + r + 25, min(go, go + s * 2), max(go, go + s * 2), L["wheel_c"] - r - 25, sz + r + 25))
+        ends.append(bx(sx - r - 25, wb + r + 25, min(go, go + s * 2), max(go, go + s * 2), L["wheel_c"] - r - 25, sz + r + 15))
     hw = handwheel_geometry(p)
     cx0, cx1, cy0, cy1 = hw["case"]
     hz = hw["z"]
-    case = bx(cx0, cx1, cy0, cy1, sz - 40, hz + 40) - bx(cx0 + 2, cx1 - 2, cy0 + 2, cy1 - 2, sz - 38, hz + 38)
+    case = bx(cx0, cx1, cy0, cy1, sz - 40, hz + 80) - bx(cx0 + 2, cx1 - 2, cy0 + 2, cy1 - 2, sz - 38, hz + 78)
     case = case - ycyl(sx, sz, cy0 - 1, cy1 + 1, sd / 2 + 0.5)
     # sprockets on shafts along Y, so the chain runs in the X-Z plane inside the case
     chain = stadium_x((cy0 + cy1) / 2, sx - 0.001, sz, sx + 0.001, hz, 30.0, 8.0) - ycyl(sx, sz, cy0, cy1, sd / 2) \
@@ -801,7 +847,9 @@ def grips(p=PARAMS):
 
 
 # ----------------------------------------------------------------- assembly
-def components(p=PARAMS, c=None):
+def assembly(p=PARAMS, c=None):
+    """The constructable design as 22 component groups (Comp), the basis of the masses in KND-CAL-001 and of the
+    build plan pictures. The kit 1.9 part-by-part model of every option is components(option) below."""
     c = p["CARRIAGE_Y"] if c is None else c
     pads, _ = _pads(p)
     shaft, ends, hw = _drive(p)
@@ -839,7 +887,7 @@ def components(p=PARAMS, c=None):
 
 def build_parts(p=PARAMS, comps=None):
     """(name, shape, color, bom, explode) tuples for .kit/concept.py."""
-    comps = comps or components(p)
+    comps = comps or assembly(p)
     return [(cp.name, cp.shape, cp.color, cp.bom, cp.explode) for cp in comps]
 
 
@@ -859,7 +907,7 @@ def track_keys():
 # ----------------------------------------------------------------- masses and checks
 def masses(comps=None, p=PARAMS):
     """kg per component from the model solids; the floor panels by layer."""
-    comps = comps or components(p)
+    comps = comps or assembly(p)
     out = {}
     for cp in comps:
         if cp.key == "panels":
@@ -876,12 +924,15 @@ def masses(comps=None, p=PARAMS):
 def module_masses(p=PARAMS):
     """Masses of the pieces carried up the kiln one at a time (KND-REQ-001 R12)."""
     tm, _ = track_module(p, 0, p["TRACK_LEN"], 0, fish=(False, False))
-    out = {"track module": tm.volume * 7.85e-6,
-           "truss module A (end)": truss_module(p, -1, 0).volume * 7.85e-6,
-           "truss module B (end)": truss_module(p, 1, 0).volume * 7.85e-6,
-           "truss module B (middle)": truss_module(p, 1, 1).volume * 7.85e-6,
-           "end truck, outer": end_truck(p, -1, step=True).volume * 7.85e-6,
-           "frame bearer": bearer(p, 0, "frame").volume * 7.85e-6}
+    rho = 7.85e-6
+    half = p["BRIDGE_L"] / 2
+    out = {"track module": tm.volume * rho,
+           "truss module A (end)": truss_module(p, -1, 0).volume * rho,
+           "truss module B (end)": truss_module(p, 1, 0).volume * rho,
+           "truss module B (middle)": truss_module(p, 1, 1).volume * rho,
+           "end truck, outer": end_truck(p, -1, step=False).volume * rho,
+           "boarding step": (end_truck(p, -1, step=True).volume - end_truck(p, -1, step=False).volume) * rho,
+           "frame bearer (end, with ledger)": bearer(p, half - p["VERT"][0] / 2, "frame").volume * rho}
     lay = floor_panel(p, 0, panel_bounds(p)[1][1] - panel_bounds(p)[1][0], layers=True)
     out["floor panel"] = sum(s.volume * d for s, d in zip(lay, (7.85e-6, 7.85e-6, 0.24e-6, 2.7e-6)))
     return out
@@ -902,7 +953,7 @@ def _ivol(a, b_):
 def checks(p=PARAMS, verbose=True):
     """Constructability checks: overlaps between neighbouring components, clearances that matter,
     and module masses. Returns a list of (check, value, ok)."""
-    comps = {cp.key: cp for cp in components(p)}
+    comps = {cp.key: cp for cp in assembly(p)}
     L = levels(p)
     res = []
     pairs = [("pads", "track"), ("track", "stops"), ("track", "wheels"), ("track", "truck_out"), ("track", "truck_in"),
@@ -946,7 +997,7 @@ def checks(p=PARAMS, verbose=True):
 
 def export(p=PARAMS):
     from build123d import export_step, export_stl
-    comps = components(p)
+    comps = assembly(p)
     by = {cp.key: cp for cp in comps}
     (ROOT / "cad/step").mkdir(parents=True, exist_ok=True)
     (ROOT / "cad/stl").mkdir(parents=True, exist_ok=True)
@@ -955,12 +1006,12 @@ def export(p=PARAMS):
     for name, keys in (("deck", deck_keys()), ("carriage", carriage_keys())):
         s = comp_of([by[k].shape for k in keys])
         export_step(s, str(ROOT / f"cad/step/kilndeck-{name}.step"))
-        export_stl(s, str(ROOT / f"cad/stl/kilndeck-{name}.stl"), tolerance=1.0, angular_tolerance=0.3)
+        export_stl(s, str(ROOT / f"cad/stl/kilndeck-{name}.stl"), tolerance=0.15, angular_tolerance=0.3)
     tm, _ = track_module(p, 0, p["TRACK_LEN"], 0)
     pads = comp_of([bx(x - 100, x + 100, -75, 75, 0, 10) for x in (100, 1000, 2000, 2900)])
     s = comp_of([tm, pads])
     export_step(s, str(ROOT / "cad/step/kilndeck-track-module.step"))
-    export_stl(s, str(ROOT / "cad/stl/kilndeck-track-module.stl"), tolerance=1.0, angular_tolerance=0.3)
+    export_stl(s, str(ROOT / "cad/stl/kilndeck-track-module.stl"), tolerance=0.15, angular_tolerance=0.3)
     print("exported STEP and STL")
 
 
@@ -973,3 +1024,61 @@ if __name__ == "__main__":
     print("Masses (kg):", {k: round(v, 1) for k, v in m.items()}, "total", round(sum(m.values()), 1))
     if "--check" not in sys.argv:
         export()
+
+
+# ================================================================================================================
+# Kit 1.9 interface (STANDARDS section 24): every concept option modelled part by part at detail level D3
+# ================================================================================================================
+TITLE = "KilnDeck"
+OPTIONS = {"A": "Rolling bridge deck", "B": "Wall-top cableway"}
+PRINCIPLES = {
+    "A": "A guard-railed walkway bridge spans the trench on two wall-top tracks and is rolled along the kiln by a hand "
+         "wheel; a hopper carriage beside it meters fuel into each feed hole, so the fireman stands over the fire on an "
+         "insulated floor, never on the crust.",
+    "B": "A wire rope spans the trench between two masts that slide along the wall tops; a fuel bucket runs out along it "
+         "and is lowered and tipped over each feed hole by lines worked from the outer wall, so no one stands on or over "
+         "the crust.",
+}
+CHOSEN = "A"            # the current design (option A, KND-OPT-001); the choice is proposed, awaiting Amish (KND-DEC-001 D10)
+OPTION_VIEWS = {"A": {"el": 24, "az": -50, "ground_z": 0.0}, "B": {"el": 24, "az": -50, "ground_z": 0.0}}
+# parts that touch by design: pins in their bushes and rollers, hinge barrels on their posts, chains on sprockets,
+# rivet nuts in their walls, shackles in lugs, the spout collar between its rings
+ALLOWED_CONTACTS = [
+    ("Roller chain", "Sprocket"), ("Clevis pin", "Guide roller"), ("Clevis pin", "Roller arm"), ("Clevis pin", "Latch"),
+    ("blind rivet nut", "M8x60 hex bolt"), ("blind rivet nut", "M8x16 hex bolt"), ("Bow shackle", "Lashing lug"),
+    ("Bow shackle", "Lashing chain"), ("Lashing chain", "Ratchet chain tensioner"), ("Lashing chain", "Screw ground anchor"),
+    ("Rope", "Sheave"), ("Wire rope", "Sheave"), ("Wire rope", "Trolley"), ("Lowering line", "Sheave"), ("Lowering line", "Winch drum"),
+    ("Haul line", "Sheave"), ("Haul line", "Winch drum"), ("Guy rope", "Screw ground anchor"), ("Guy rope", "Mast head plate"),
+    ("Wire rope", "Mast head plate"), ("Guy rope", "Rope thimble"), ("Wire rope", "Rope thimble"), ("Bucket bail", "Trolley hook"),
+    ("Lowering line", "Trolley hook"), ("Lowering line", "Bucket bail"), ("Trip line", "Bucket"), ("Haul line", "Trolley side plate"),
+    ("Guy rope", "Turnbuckle"), ("Bucket trunnion", "Bucket bail"), ("Rope thimble and shackle", "Guy rope"),
+    ("Rope thimble and shackle", "Wire rope"), ("Lowering line", "Winch drum"), ("Haul line", "Winch drum"),
+    ("Clevis pin", "Split pin"), ("blind rivet", "Panel frame angle"), ("blind rivet", "Aluminium radiation shield"),
+]
+# BOM line of each component group (numbers match bom/bom.csv)
+BOM_LINE = {k: v[0] for k, v in BOM.items()}
+BOM_LINE["storm"] = 18
+
+
+def components(option=None):
+    """Kit 1.9: the parts of a concept option as cad_parts.part() dicts (made, bought, fastener, weld, context)."""
+    option = option or CHOSEN
+    if option == "A":
+        import knd_option_a
+        return knd_option_a.build(sys.modules[__name__])
+    if option == "B":
+        import knd_option_b
+        return knd_option_b.build(sys.modules[__name__])
+    raise ValueError(f"unknown option {option}")
+
+
+def option_masses(option=None):
+    """kg by BOM line (or group) from the part-by-part model; context parts left out."""
+    import cad_parts as cp_
+    out = {}
+    for q in components(option):
+        if q["kind"] == "context":
+            continue
+        k = q.get("bom") or q.get("group")
+        out[k] = out.get(k, 0.0) + cp_.mass_kg(q)
+    return out

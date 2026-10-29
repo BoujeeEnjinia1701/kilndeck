@@ -34,8 +34,20 @@ _C = None
 def comps():
     global _C
     if _C is None:
-        _C = {c.key: c for c in m.components()}
+        _C = {c.key: c for c in m.assembly()}
     return _C
+
+
+_STORM = None
+
+
+def storm(explode=(0, 0, 0)):
+    """Storm clamps, lashing lugs, chains, tensioners and ground anchors (BOM line 18, KND-DEC-001 D12), from the D3 model."""
+    global _STORM
+    if _STORM is None:
+        import build123d as b
+        _STORM = b.Compound(children=[q["shape"] for q in m.components("A") if q.get("group") == "storm"])
+    return part("Storm clamps and tie-downs", _STORM, "#B45309", explode)
 
 
 def part(name, shape, color, explode=(0, 0, 0), alpha=1.0):
@@ -107,6 +119,7 @@ def overview():
         K("hopper", "Fuel hopper", (4400, 0, 1300)),
         K("rotor", "Metering rotor, crank", (4400, 0, 500)),
         K("spout", "Swing spout", (4400, 0, -400)),
+        storm((0, 0, -1100)),
     ]
     return bv.overview(parts, OUT / "overview.png", "KilnDeck prototype: every component, pulled apart",
                        subtitle="Numbered in build order. Seen from the outer wall, right and above; track shown 4 m long",
@@ -343,7 +356,7 @@ def joints(which=None):
                           W("frame_bearers", "Frame bearer end plate on the cleats", (tx - 260, tx + 60, -160, 160, 200, 800)),
                           W("panels", "Floor panels", (tx - 260, tx + 60, -160, 160, 200, 800)),
                           W("shaft", "Pillow block on its hanger", (tx - 260, tx + 60, -160, 160, 200, 800))],
-                      "Truss splice and U-frame", "Six M12 bolts join the verticals; four M12 bolts tie the frame bearer to the cleats so the posts stand stiff",
+                      "Truss splice and U-frame", "Six M12 bolts join the verticals; three M12 bolts in a column tie the frame bearer to the cleats so the posts stand stiff",
                       elev=20, azim=-35)
     J[5] = lambda: jt(5, [W("panels", "Floor panel: steel top, board, aluminium under", (tx - 330, tx + 60, -1000, -720, 280, 600)),
                           W("panel_bearers", "Panel bearer", (tx - 330, tx + 60, -1000, -720, 280, 600)),
@@ -411,7 +424,7 @@ def steps(which=None):
                       "The same on the other side; feet on the seats, eight M12 bolts at each end", elev=24, azim=-40, label_done=False)
     frame = base + [K("truss_a"), K("truss_b")]
     E[7] = lambda: st(7, frame, [K("frame_bearers", "Frame bearers", (0, 0, 500)), K("panel_bearers", "Panel bearers", (0, 0, 500))],
-                      "cross bearers", "Frame bearers at the ends and splices, four M12 each end; panel bearers between", elev=30, azim=-40, label_done=False)
+                      "cross bearers", "Frame bearers at the ends and splices, three M12 in a column each end; panel bearers between", elev=30, azim=-40, label_done=False)
     frame2 = frame + [K("frame_bearers"), K("panel_bearers")]
     E[8] = lambda: st(8, frame2, [K("panels", "Floor panels", (0, 0, 600))], "floor panels",
                       "Aluminium side down; two M8 bolts each end; remove the trestles once the floor is on", elev=30, azim=-40, label_done=False)
@@ -451,6 +464,9 @@ def steps(which=None):
                        "Housing under the outlet on its shelf; chain and guard; crank shaft over the top rail", elev=24, azim=-40, label_done=False)
     E[17] = lambda: st(17, frame8 + [K("hopper"), K("rotor")], [K("spout", "Swing spout", (0, 0, -300))], "swing spout",
                        "Push the collar up onto the outlet lip and fit its retaining ring", elev=24, azim=-40, label_done=False)
+    E[18] = lambda: st(18, base, [storm((0, 0, 250))], "storm clamps and tie-downs",
+                       "A screw clamp at each wheel, a lashing chain from each truck beam to a screw anchor beyond the kiln wall; set when a storm threatens and at every shift end",
+                       elev=30, azim=-40, label_done=False)
     for n in sorted(E):
         if which and n not in which:
             continue

@@ -18,7 +18,7 @@ from build123d import Compound  # noqa: E402
 P = M.PARAMS
 L = M.levels()
 G = M.carriage_frame_geometry()
-comps = {c.key: c for c in M.components()}
+comps = {c.key: c for c in M.assembly()}
 win = M.bx(-1500, 1500, -5000, 5000, -10, 5000)
 shapes = [comps[k].shape for k in M.deck_keys() + M.carriage_keys()]
 for k in M.track_keys():
@@ -30,9 +30,10 @@ bb = asm.bounding_box()
 work = ROOT / "cad/drawings/_views"
 views = project_views(asm, work)
 s = Sheet(project="KilnDeck", title="Rolling fuel-feeding deck: general arrangement", dwg_no="KND-DWG-001",
-          rev="P1", author="Amish Chadha", date="2026-10-03", concept=True, scale=None,
+          rev="P2", author="Amish Chadha", date="2026-10-28", concept=True, scale=None,
           material="S275 hollow sections, channel and plate; calcium silicate board; aluminium sheet. See bom/bom.csv",
-          revisions=[("P1", "Preliminary GA from the constructable TRL 3 model (KND-DDR-002)", "2026-10-03", "AC")])
+          revisions=[("P1", "Preliminary GA from the constructable TRL 3 model (KND-DDR-002)", "2026-10-03", "AC"),
+                     ("P2", "Storm clamps and lashing lugs (D12); deeper bearer cleats, end flange bearings (D13)", "2026-10-28", "AC")])
 s.add_ortho(views, ["front", "top", "right"])
 s.add_svg(views["iso"], 276, 57, 140, 62, label="Isometric view", sublabel="Not to scale; track shown 3 m long")
 s.add_notes("Key dimensions (mm) and data", [
@@ -48,7 +49,7 @@ s.add_notes("Key dimensions (mm) and data", [
     f"Hopper 450 x 450, about 52 L; rotor {P['ROTOR'][0]:.0f} dia x {P['ROTOR'][1]:.0f}",
     f"Spout outlet {G['spout_x'] - 0:.0f} from deck centre line, {P['SPOUT_Z']:.0f} up",
     f"Crank at {G['crank_z']:.0f}, over the top rail",
-    "Deck about 800 kg; no piece over 40 kg",
+    "Deck about 810 kg; no piece over 40 kg; storm clamps at each wheel",
     "PRELIMINARY, NOT FOR FABRICATION",
 ], x=276, y=130, width=140)
 s.save(ROOT / "cad/drawings/KND-DWG-001")

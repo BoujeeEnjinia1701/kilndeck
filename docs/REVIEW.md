@@ -125,3 +125,59 @@ C1 track modules on pads with slotted fishplates; C2 track end stops; C3 end tru
 ## 2026-10-03: photoreal renders
 
 Rendered with Blender Cycles on Amish's Mac from `cad/src/product_model.py`; captioned with `.kit/photo_caption.py`; `media/card.png` and `media/social-preview.png` made with `.kit/cards.py`. Views: hero, exploded, detail. image_qc passes and `render.py --check` has no FAIL.
+
+## Session 2026-10-24: kit 1.9.1 upgrade
+
+Run on 2026-10-28 and 2026-10-29 (an earlier session was cut off by a usage limit before committing; its work was checked, kept where sound and redone where incomplete). The design is unchanged and stays option A; only the record and the modelling grew. Amish's standing instruction of 2026-10-23 (fix rule) was applied; everything else is "Proposed, awaiting Amish".
+
+### What was added
+
+- Pipeline documents: STEM check `docs/01b-stem-check.md` with `docs/04-calcs/stem_check.py` and `stem_results.csv`; concept options `docs/02a-concept-options.md`; user requirements `docs/03a-user-requirements.md`; product requirements migrated to PR-001 to PR-017 in `docs/03-requirements.md`; generated traceability `docs/03b-traceability.md` (`python .kit/trace.py`); `docs/07-regulatory.md`, `08-feasibility.md`, `09-risk.md` (hazard analysis, design FMEA), `10-market.md`, `11-plan.md`; concept selection `docs/decisions/0003-concept-selection.md`; problem tables in `docs/01-problem.md`. `stage: P3` in `project.yaml`.
+- CAD to kit 1.9: `cad/src/model.py` (`PARAMS`, `OPTIONS`, `PRINCIPLES`, `CHOSEN = "A"`, `OPTION_VIEWS`, `ALLOWED_CONTACTS`, `components(option)`), with `cad/src/knd_parts.py`, `knd_option_a.py` and `knd_option_b.py`. `cad/fidelity.json` passes at D3.
+- Regenerated from the model: `cad/drawings/` (KND-DWG-001 to 112), `cad/step/`, `cad/stl/` (tolerance 0.15 mm), the build plan pictures (overview now 23 groups, new step 18 for the storm clamps), and the concept media (`hero`, `cutaway`, `exploded`, `flow`, `concept-blueprint`, `model.glb`, `viewer.html`).
+- `cad/src/product_model.py` from `components("A")` plus a kiln strip and a 1.75 m person on the deck. Views: `hero` (outdoor, soil, on the kiln), `studio`, `carriage`.
+- Build plan `docs/05-build-plan.md` v0.2: storm clamps and tie-downs (section 3.15, step 18) and the fits of D13.
+
+### CAD fidelity (`cad/fidelity.json`, D3)
+
+| Option | Parts | Made or bought | Fasteners | Welds | Mass (kg) |
+| --- | --- | --- | --- | --- | --- |
+| A, rolling bridge deck | 1,835 | 515 | 861 | 459 | 1,202.7 (deck, carriage, 2 x 12 m track, tie-downs) |
+| B, wall-top cableway | 252 | 103 | 113 | 36 | 260.0 |
+
+### STEM check
+
+28 claims: 15 within known science, 12 plausible, 1 fails with a fix for Amish (S22), 0 fail. `stem_check` is **open**. Fixes made under the fix rule: S20 storm (D12), S19 fits (D13), S8 wheel rating (D15). The independent review (a headless reviewer on `claude-opus-5-5` that saw only the STEM check, CAL, PRS and `sizing.py`) found S8 and S20 refuted, S11, S15, S16, S17, S19, B3 and B4 overconfident, and 12 missing claims; it was adopted in part (table in KND-STM-001); its B2 finding was a misreading of a limit shown divided by 3 and was not adopted.
+
+### Options
+
+Option A (current design) 152 of 190; option B (wall-top cableway, a different working principle) 124 of 190; 18 % apart. Recommended: A, proposed, awaiting Amish (D10, KND-DDR-003). `media/options.png` is not rendered here (Blender Cycles on Amish's Mac, `python .kit/options.py`).
+
+### Requirements not met or open
+
+PR-007 floor 50 °C: not met in full sun (74 °C; 93 °C if the top is coal-dusted). PR-001: not met on the curved kiln ends. PR-008 met only against the interim 0.20 MPa (0.151 MPa at working load; 0.207 MPa at the 250 kg rated load). PR-005 dose and the plausible rows above wait for the survey or TRL 4. PR-012 (40 kg) is met on paper with under 1 % margin and exceeds the HSE team guide (D14). BOM total USD 2,786.97 against `budget_usd` 3,500 (the 650 kg wheel price is to assess).
+
+### Decisions awaiting Amish
+
+- D10: concept choice (A recommended).
+- D11: wind working limit (7 m/s on level track; the review shows about 5 m/s on a 2 % grade) and storm clamps at every shift end; the design gust for PR-014 (28 m/s is only the lower end of the cited range).
+- D14: team-handling limit (33 kg pieces: five truss modules a side and 2.4 m track modules).
+- Approach to a co-design partner (D8).
+
+### Decided under the standing instruction (Amish can reverse)
+
+D12 storm clamps and tie-downs (BOM line 18, USD 160 estimate), D13 fits found by the part-by-part model, D15 wheels rated 650 kg.
+
+### Safety concerns
+
+Unchanged and added to: the deck carries a person over a burning kiln; nothing authorises use before the survey and proof load (TRL 4). New from the review: fire or hot gas flashback into the hopper (H11), the lock pin margin at low friction, anchor pull-out for the storm tie-downs, and the track creeping on its pads when struck by the deck.
+
+### Kit bugs met
+
+- `cad_check.py` reports level D1 until `stage` is set in `project.yaml`; set `stage: P3` first.
+- The placeholder markers `STM_TABLE` and `REVIEW_TABLE` in the STEM template are not filled by any kit script; the rows were pasted from the output of `stem_check.py`.
+- `cad_check.py --export` writes per-part STEP only for the chosen option (option B has `step_files: 0` by design).
+
+### Recommended next step
+
+Amish's decisions D10, D11 and D14, then the photoreal renders, `media/options.png` and cards on the Mac (the existing `render-*.png` and cards show the earlier model). TRL 4 (survey, proof load) stays on hold under the portfolio cap.

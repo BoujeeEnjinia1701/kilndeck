@@ -3,9 +3,9 @@ doc_id: KND-PRC-001
 title: KilnDeck design precis
 project: KilnDeck
 doc_type: Precis
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-10-03'
+date: '2026-10-29'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,6 +17,10 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: TRL 2 and 3 precis; deck spans the trench on wall-top tracks (KND-DDR-001); constructable design (KND-DDR-002); first-order numbers from KND-CAL-001
+- version: "0.3"
+  date: '2026-10-29'
+  author: Amish Chadha
+  change: Kit 1.9.1 upgrade; numbers refreshed from KND-CAL-001 v0.2 (storm clamps and tie-downs, KND-DEC-001 D12; fits, D13); the design is option A of KND-OPT-001
 ---
 
 # KilnDeck design precis
@@ -77,13 +81,13 @@ From KND-CAL-001 (`docs/04-calcs/sizing.py`). All are estimates for a design tha
 | Coal per fireman per round | about 30 kg | 30,000 bricks a day, 1.2 MJ per kg of brick, 22 MJ/kg coal, a round every 17.5 min, two firemen |
 | Hopper | 52 L, about 42 kg of coal or 13 kg of biomass; 1.4 rounds per fill | Bulk density 0.80 and 0.25 kg/L |
 | Dose | about 0.49 kg of coal per pocket, 1.97 kg per turn | 80 % pocket fill |
-| Deck mass | about 800 kg; heaviest piece 39 kg | From the model solids |
+| Deck mass | about 810 kg; heaviest piece 39.8 kg (limit 40 kg) | From the model solids |
 | Bridge | 11 MPa in the chords, 0.5 mm deflection | 250 kg rated load at mid-span, 1.25 dynamic factor |
 | Guardrail | 91 to 100 MPa under a 1 kN push; 150 MPa at the 1.5 kN proof load | S275 steel, yield 275 MPa |
-| Hand wheel force | 64 N on level track | Rolling resistance 2 % |
+| Hand wheel force | 65 N on level track | Rolling resistance 2 % |
 | Wall bearing | 0.15 MPa under a pad | Interim limit 0.20 MPa until the survey |
 | Floor top temperature | 34 °C at night, 48 °C in shade, 74 °C in full sun at 45 °C air | Crust 150 °C; the bare crust is the comparison |
-| Parts cost | USD 2,627 | Value-engineering target: USD 3,500. Estimated cost of the constructable design: USD 2,627 (USD 873 under the target) |
+| Parts cost | USD 2,787 | Value-engineering target: USD 3,500. Estimated cost of the constructable design: USD 2,787 (USD 713 under the target), including USD 160 (estimate) of storm clamps and tie-downs (KND-DEC-001 D12) |
 
 ## Patent design-arounds
 

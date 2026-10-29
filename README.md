@@ -4,7 +4,7 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827) [![REUSE compliant](https://github.com/BoujeeEnjinia1701/kilndeck/actions/workflows/reuse.yml/badge.svg)](https://github.com/BoujeeEnjinia1701/kilndeck/actions/workflows/reuse.yml) [![Archived in Software Heritage](https://archive.softwareheritage.org/badge/origin/https://github.com/BoujeeEnjinia1701/kilndeck/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/BoujeeEnjinia1701/kilndeck) [![DOI](https://zenodo.org/badge/{"message":"GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:\"push\" to attach the repository with credentials.","documentation_url":"https://docs.anthropic.com/en/docs/claude-code/github-actions"}.svg)](https://zenodo.org/badge/latestdoi/{"message":"GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:\"push\" to attach the repository with credentials.","documentation_url":"https://docs.anthropic.com/en/docs/claude-code/github-actions"})
 
-**Area:** Sustainable housing · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** USD 3,500 (estimated cost of the constructable design USD 2,627) · **Difficulty:** 4 of 5
+**Area:** Sustainable housing · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** USD 3,500 (estimated cost of the constructable design USD 2,787) · **Difficulty:** 4 of 5
 
 Carries kiln firemen on a railed rolling deck so they feed fuel without standing on the ash crust over the fire.
 
@@ -57,7 +57,17 @@ Full problem statement: [docs/01-problem.md](docs/01-problem.md)
 
 A walkway deck that spans the trench and rolls along the kiln on two wall-top tracks, carrying the fireman behind a guardrail and a hopper carriage with a hand metering rotor; the fireman moves the deck from row to row with a hand wheel and meters fuel into each feed hole without standing on the ash crust over the fire.
 
-Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md) · Calculations: [docs/04-calcs/01-sizing.md](docs/04-calcs/01-sizing.md) · Prototype build plan: [docs/05-build-plan.md](docs/05-build-plan.md) · Design decisions: [docs/06-design-decisions.md](docs/06-design-decisions.md)
+Full design precis: [docs/02-concept.md](docs/02-concept.md) · STEM check: [docs/01b-stem-check.md](docs/01b-stem-check.md) · Concept options: [docs/02a-concept-options.md](docs/02a-concept-options.md) · User requirements: [docs/03a-user-requirements.md](docs/03a-user-requirements.md) · Requirements: [docs/03-requirements.md](docs/03-requirements.md) · Traceability: [docs/03b-traceability.md](docs/03b-traceability.md) · Calculations: [docs/04-calcs/01-sizing.md](docs/04-calcs/01-sizing.md) · Prototype build plan: [docs/05-build-plan.md](docs/05-build-plan.md) · Design decisions: [docs/06-design-decisions.md](docs/06-design-decisions.md)
+
+## STEM check
+
+Every physical and biological claim KilnDeck makes was checked against known science, and an independent reviewer tried to refute each verdict ([KND-STM-001](docs/01b-stem-check.md)). Nothing fails outright. Of 28 claims, 15 are within known science and 12 stay plausible until the partner kiln survey, a trial assembly or a TRL 4 trial (dose repeatability, wall bearing, lock pin friction, crank jamming, piece mass tolerance, floor board strength, fit-up, storm hold and anchor pull-out, wind uplift, and two of option B). Three rows failed or were refuted and were fixed under Amish's standing instruction: a parked deck would blow along the kiln in a pre-monsoon storm (storm clamps and tie-downs added), the first part-by-part model had parts that could not be fitted (fits corrected), and the wheels did not cover the 250 kg rated load (650 kg wheels). One row, two-person handling of the 40 kg pieces against the HSE team guide of about 33 kg, is a safety trade-off on a decided constraint and goes to Amish. The 50 °C floor target is not met in full summer sun (74 °C, or 93 °C with a coal-dusted top).
+
+## Concept options
+
+![The two concept options side by side at one scale](media/options.png)
+
+Two working principles were compared against the user requirements ([KND-OPT-001](docs/02a-concept-options.md)): the rolling bridge deck described above (option A, the current design) and a wall-top cableway that sends a bucket out on a rope between two guyed masts (option B). Option A scores 152 of 190 against 124 for option B, 18 % apart, and is recommended; the choice is proposed, awaiting Amish. Both are modelled part by part in `cad/src/model.py` (option A: 1,835 parts and 1,203 kg; option B: 252 parts and 260 kg; `cad/fidelity.json`).
 
 ## Key components
 
@@ -71,8 +81,8 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 
 ## Key numbers (estimates, KND-CAL-001)
 
-- Deck about 800 kg; no piece over 40 kg, so two people carry every part up the kiln.
-- Hand wheel force about 64 N to move the loaded deck on level track.
+- Deck about 810 kg; no piece over 40 kg, so two people carry every part up the kiln.
+- Hand wheel force about 65 N to move the loaded deck on level track.
 - About 0.49 kg of coal per rotor pocket; the hopper holds about 1.4 feeding rounds.
 - Floor top about 48 °C in shade against a crust of about 150 °C; about 74 °C in full summer sun (requirement R7 not met in full sun).
 
@@ -80,7 +90,7 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · Requirements: [d
 
 ![Every component of the prototype, pulled apart and numbered in build order](docs/05-build-plan/overview.png)
 
-The [prototype build plan](docs/05-build-plan.md) (KND-BLD-001) shows how to make each of the 22 groups of parts, with a making sketch, joint close-ups and a picture for every one of the 17 assembly steps. Almost everything is cut, drilled and stick welded from stock steel hollow section, channel and plate; wheels, bearings, chains, the hand wheel and the insulation board are bought. The deck is assembled on trestles over the cold zone of the kiln and rolled to the fire only when complete. It is a plan, not yet built: building and testing to it is TRL 4 work.
+The [prototype build plan](docs/05-build-plan.md) (KND-BLD-001) shows how to make each of the 23 groups of parts, with a making sketch, joint close-ups and a picture for every one of the 18 assembly steps. Almost everything is cut, drilled and stick welded from stock steel hollow section, channel and plate; wheels, bearings, chains, the hand wheel and the insulation board are bought. The deck is assembled on trestles over the cold zone of the kiln and rolled to the fire only when complete. It is a plan, not yet built: building and testing to it is TRL 4 work.
 
 ## Safety
 
@@ -102,9 +112,9 @@ The [prototype build plan](docs/05-build-plan.md) (KND-BLD-001) shows how to mak
 
 | Folder | Contents |
 | --- | --- |
-| `docs/` | Problem, concept, requirements, calculations, build plan and design decisions |
-| `cad/src/` | build123d Python source, the source of truth for all geometry |
-| `cad/step/`, `cad/stl/` | Exported models for FreeCAD, other CAD tools and printing |
+| `docs/` | Problem, STEM check, concept and options, requirements, traceability, calculations, build plan, decisions, regulatory, feasibility, risk, market and plan |
+| `cad/src/` | build123d Python source, the source of truth for all geometry (both concept options, part by part) |
+| `cad/step/`, `cad/stl/` | Exported models: STEP per part and per assembly, STL of the chosen design |
 | `cad/drawings/` | General arrangement and making sketches |
 | `bom/` | Bill of materials |
 | `electronics/` | Not used: KilnDeck has no electronics |
@@ -114,7 +124,26 @@ The [prototype build plan](docs/05-build-plan.md) (KND-BLD-001) shows how to mak
 
 ## Documentation
 
-Controlled documents follow the portfolio [documentation standard](.kit/STANDARDS.md). Each carries a document ID (KND-PRC-001 for the precis), a version and a revision history. Branded PDFs are built with `python .kit/render.py` and attached to GitHub Releases when a document is tagged, for example `KND-PRC-001/v1.0`.
+| Document | ID |
+| --- | --- |
+| [Problem statement](docs/01-problem.md) | KND-PRB-001 |
+| [STEM check](docs/01b-stem-check.md) | KND-STM-001 |
+| [Design precis](docs/02-concept.md) | KND-PRC-001 |
+| [Concept options](docs/02a-concept-options.md) | KND-OPT-001 |
+| [User requirements](docs/03a-user-requirements.md) | KND-URS-001 |
+| [Product requirements and specifications](docs/03-requirements.md) | KND-PRS-001 |
+| [Traceability matrix](docs/03b-traceability.md) | KND-RTM-001 |
+| [Calculation note](docs/04-calcs/01-sizing.md) | KND-CAL-001 |
+| [Prototype build plan](docs/05-build-plan.md) | KND-BLD-001 |
+| [Design decisions register](docs/06-design-decisions.md) | KND-DEC-001 |
+| [Concept selection](docs/decisions/0003-concept-selection.md) | KND-DDR-003 |
+| [Regulatory and standards register](docs/07-regulatory.md) | KND-REG-001 |
+| [Feasibility](docs/08-feasibility.md) | KND-FEA-001 |
+| [Risk register, hazard analysis and design FMEA](docs/09-risk.md) | KND-RSK-001 |
+| [Market and viability](docs/10-market.md) | KND-MKT-001 |
+| [Project plan](docs/11-plan.md) | KND-PLN-001 |
+
+Pipeline stage: P3 of P0 to P6 (the portfolio cap). Controlled documents follow the portfolio [documentation standard](.kit/STANDARDS.md). Each carries a document ID (KND-PRC-001 for the precis), a version and a revision history. Branded PDFs are built with `python .kit/render.py` and attached to GitHub Releases when a document is tagged, for example `KND-PRC-001/v1.0`.
 
 ## Credits
 

@@ -3,7 +3,7 @@ doc_id: KND-PRB-001
 title: KilnDeck problem statement
 project: KilnDeck
 doc_type: Problem statement
-version: "0.2"
+version: "0.3"
 status: Draft
 date: '2026-10-03'
 author: Amish Chadha
@@ -17,6 +17,10 @@ revisions:
   date: '2026-10-03'
   author: Amish Chadha
   change: TRL 2 and 3 update; kiln geometry stated as working assumptions; open questions answered or carried to the co-design partner (KND-DDR-001)
+- version: "0.3"
+  date: '2026-10-28'
+  author: Amish Chadha
+  change: Kit 1.8 users-and-needs and stakeholders tables (Tables 1a and 1b), source of the user requirements KND-URS-001
 ---
 
 # KilnDeck problem statement
@@ -39,6 +43,25 @@ Existing improvements target fuel, not footing. Stanford's Luby Lab and BUET bui
 | Kiln owners and managers | A low-cost addition that fits the existing kiln and does not slow production | Seasonal operation, thin margins, local fabrication |
 | Local fabricators | Drawings for track, deck and hopper from stock steel | Small workshops in brick-making districts |
 | Clean-kiln and worker rights programmes | A safety measure that fits alongside fuel-efficiency training | NGO, research and government programmes |
+
+*Table 1a. Users and needs (kit 1.8; the source of KND-URS-001).*
+
+| User type | Goals and needs | Typical use scenario | Pain points and challenges |
+| --- | --- | --- | --- |
+| Kiln fireman | Feed every hole in the round on time without stepping on the crust; not fall; less heat on the feet; move and dose fuel by hand | Two firemen in a 6 to 8 h shift, a round every 15 to 20 min, day and night, in summer heat | Weak spots in the crust over the fire, radiant heat, smoke, poor light at night, no gloves or masks |
+| Kiln owner or manager | A cheap addition that fits the existing kiln and does not slow production; the walls must not be damaged | Seasonal firing; the fire moves 6 to 10 m a day round a 180 to 220 m circuit | Thin margins, no power on the kiln top, distrust of equipment that slows feeding |
+| Local fabricator | Drawings and a plan for stock steel, hand tools, a drill and a stick welder; pieces two people can carry | A small workshop in a brick district, fitting the deck on the kiln over the cold zone | Unfamiliar bought parts (wheels, bearings, chains), no lifting gear on site |
+| Clean-kiln or worker rights programme | A safety measure that fits fuel-efficiency training and can be shown to work | Trials with firemen during a firing season | Must not be seen as a reason to work in unsafe heat or storms |
+
+*Table 1b. Stakeholders.*
+
+| Stakeholder group | Role or interest | Engagement needed |
+| --- | --- | --- |
+| Firemen and their families | The people the deck protects | Interviews on hazards and acceptance; trial users at TRL 4 and later |
+| Kiln owners' associations | Decide whether a kiln fits a deck and pays for it | Survey access to a partner kiln; view on track handling and fuel stock |
+| Clean-kiln research programmes (for example the Stanford and BUET kiln team) | First co-design candidate (KND-DDR-001, D8) | Not yet approached; approach is Amish's decision |
+| Labour inspectorates and environment departments | Kiln licensing and workplace safety rules (KND-REG-001) | To assess; no engagement before TRL 4 |
+| Local fabricators and steel stockists | Build and supply the deck | Quotes for the bought parts and steel at TRL 4 |
 
 ## Operating environment
 
