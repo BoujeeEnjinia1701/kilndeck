@@ -74,7 +74,7 @@ def load_options():
     opts = mod.OPTIONS
     if len(opts) < 2:
         sys.exit("at least two concept options are required (STANDARDS section 21)")
-    return opts, getattr(mod, "TITLE", ROOT.name)
+    return opts, getattr(mod, "TITLE", _project_name())
 
 
 def panel(opt, path):
@@ -107,7 +107,15 @@ def model_options():
     pr = getattr(mod, "PRINCIPLES", {}); views = getattr(mod, "OPTION_VIEWS", {})
     opts = [dict(key=k, name=v, principle=pr.get(k, ""), chosen=(k == getattr(mod, "CHOSEN", None)),
                  parts=mod.components(k), view=views.get(k, {})) for k, v in mod.OPTIONS.items()]
-    return opts, getattr(mod, "TITLE", ROOT.name)
+    return opts, getattr(mod, "TITLE", _project_name())
+
+
+def _project_name():
+    try:
+        import yaml
+        return (yaml.safe_load((ROOT / "project.yaml").read_text()) or {}).get("name") or ROOT.name
+    except Exception:
+        return ROOT.name
 
 
 def cycles_panel(opt, tmp):

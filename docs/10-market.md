@@ -3,9 +3,9 @@ doc_id: KND-MKT-001
 title: KilnDeck market and viability
 project: KilnDeck
 doc_type: Market and viability
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,10 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: First issue (kit 1.8 upgrade)
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Cost USD 2,905"
 ---
 
 # KilnDeck market and viability
@@ -24,7 +28,7 @@ KilnDeck is for the fixed-chimney and zigzag brick kilns of South Asia, where fi
 | Segment | Target users and region | Competitive benchmark (cited price) | Estimated cost per unit (USD) | Value proposition |
 | --- | --- | --- | --- | --- |
 | Fixed-chimney bull's trench kilns | Firemen and owners in Bangladesh, Pakistan (Punjab), India and Nepal | No product found that carries a fireman over the trench. Nearest general platform: an aluminium double-width mobile scaffold tower, INR 7,500 a piece for an 18 ft tower (IndiaMART listing, checked 2026-10-25); it cannot span the trench or stand on the crust | 2,787 (BOM, one deck and 2 x 12 m of track) | Feeding without standing on the crust, from equipment a local workshop builds |
-| Clean-kiln and worker safety programmes | NGO, research and government programmes that train firemen | Motorised coal feeders piloted by Stanford and BUET (price not published; to assess) | 2,787 | A hand-powered safety measure that sits beside fuel-efficiency training |
+| Clean-kiln and worker safety programmes | NGO, research and government programmes that train firemen | Motorised coal feeders piloted by Stanford and BUET (price not published; to assess) | 2,905 | A hand-powered safety measure that sits beside fuel-efficiency training |
 | Zigzag kilns (after conversion) | The same owners, after kiln conversion | To assess (feeding pattern and wall geometry differ) | to assess | Possible with a different track layout; not designed |
 
 Cost notes: steel is costed at USD 1.30 per kilogram in the BOM, an estimate; an Indian listing for mild steel rectangular pipe was INR 53 per kilogram (IndiaMART, Anjani Tubes, Ghaziabad, checked 2026-10-25). A 100 mm, 20 mm round-groove gate wheel rated 400 kg sells at GBP 12.20 before VAT in the UK (F.H. Brundle, checked 2026-10-25); the BOM's USD 30 for a 500 kg wheel is a regional estimate to confirm (KND-DEC-001 item 3). Fabrication labour is not included.

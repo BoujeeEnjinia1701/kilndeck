@@ -316,7 +316,7 @@ def bom_total():
 
 
 # ----------------------------------------------------------------- 15. wind (STEM check S20, KND-DEC-001 D12)
-W_ASSUME = dict(rho_air=1.2, cf=2.0, gust_storm=28.0, gust_typical=17.0, mu_pad=0.4, mu_clamp=0.3, clamp_hand_n=100.0,
+W_ASSUME = dict(work_limit=7.0, rho_air=1.2, cf=2.0, gust_storm=28.0, gust_typical=17.0, mu_pad=0.4, mu_clamp=0.3, clamp_hand_n=100.0,
                 tommy_l=120.0, k_nut=0.2, clamp_d=16.0, chain_wll_kn=19.6)   # 8 mm grade 80 chain, working load limit 2,000 kg (EN 818-2)
 
 
@@ -495,6 +495,8 @@ def main():
           f"force {w['k']:.2f} N per (m/s)^2")
     print(f"  unlocked deck starts to roll at {w['v_roll']:.1f} m/s; locked deck slides at {w['v_lock']:.1f} m/s; "
           f"200 N at the rim is used up at {w['v_move']:.1f} m/s; empty deck tips along the kiln at {w['v_tip']:.1f} m/s")
+    print(f"  working limit {W_ASSUME['work_limit']:.0f} m/s on level track, clamps and chains set above it and at every shift end (KND-DEC-001 D11, decided 2026-10-30): "
+          f"{w['v_move'] - W_ASSUME['work_limit']:.1f} m/s below the wind that uses up the 200 N at the rim")
     print(f"  {W_ASSUME['gust_typical']:.0f} m/s gust: {w['F17']:.0f} N; {W_ASSUME['gust_storm']:.0f} m/s storm gust: {w['Fs']:.0f} N")
     print(f"  storm clamps: preload {w['pre'] / 1000:.2f} kN each, four clamps hold {w['clamp'] / 1000:.1f} kN; deck and track slide on the pads at "
           f"{w['slide'] / 1000:.1f} kN; chain tension {w['t_chain'] / 1000:.1f} kN (x share {w['ux']:.2f}); tipping with chains "

@@ -45,7 +45,7 @@ c.claim("S6", "The bearer end-plate bolts carry the guardrail moment (R2)", "Eng
         "Elastic bolt group of three M12 8.8 in a column, pivot at the plate's lower edge, with a 1.3 allowance for prying; M12 8.8 design tension about 48 kN; "
         "end-plate bending to confirm at TRL 4",
         round(1.5 * 1.3 * g["bolt_t"] / 1000, 1), 48.0, "kN", closed_by="KND-CAL-001 s7")
-c.claim("S7", "The track channel spans 1.0 m between pads under the worst wheel load below yield (R8)", "Physics", "Strength of materials",
+c.claim("S7", "The track channel spans 0.8 m between pads under the worst wheel load below yield (R8)", "Physics", "Strength of materials",
         "UPN 80 about its weak axis, Wy 6.36 cm3 (handbook), wheel load with a 1.25 dynamic factor; pads sit 100 mm each side of every module joint, so a wheel on a joint spans 200 mm", round(w["s"]), 275, "MPa", closed_by="KND-CAL-001 s9")
 c.claim("S8", "No track wheel carries more than its rating, at the 250 kg rated load (R3)", "Engineering and technology", "Standards practice",
         f"Statics of the deck with the full carriage at its travel limit and the 250 kg rated load beside it, 1.25 dynamic factor ({w['Wkg']:.0f} kg with the 100 kg fireman); "
@@ -66,7 +66,7 @@ c.claim("S12", "The insulated floor keeps the fireman's feet far cooler than the
         f"underside emissivity 0.05 to 0.9 gives {ft_e[0]:.0f} to {ft_e[1]:.0f} C; a coal-dusted top sheet (absorptance 0.9 in place of 0.5) gives {ft_dust:.0f} C; R7 (50 C) is not met in full sun",
         round(ft_sun["top"]), A["crust_c"], "C", closed_by="KND-CAL-001 s11")
 c.claim("S13", "The 6 mm track joint gaps take the rail's heat growth", "Physics", "Thermodynamics",
-        "Linear expansion 12e-6 /K x 3,000 mm x 100 K (5.0 mm for a 140 K swing from a cold install)", round(tt["dl"], 1), tt["gap"], "mm", closed_by="KND-CAL-001 s13")
+        "Linear expansion 12e-6 /K x 2,400 mm x 100 K (4.0 mm for a 140 K swing from a cold install)", round(tt["dl"], 1), tt["gap"], "mm", closed_by="KND-CAL-001 s13")
 c.claim("S14", "The deck cannot tip across the kiln with the full hopper carriage at its limit", "Physics", "Mechanics and statics",
         "Moments about the side B wheel line: deck weight against the carriage overhang", round(w["overturn"], 2), w["restoring"], "kN m", closed_by="KND-CAL-001 s9")
 c.cited("S15", "The metering crank turns with a light hand force", "Biology", "Ergonomics",
@@ -77,10 +77,12 @@ c.claim("S16", "The track end stops take the deck running into them at walking-w
         f"Kinetic energy at one hand wheel turn a second absorbed over 10 mm of rubber, two stops; two M12 8.8 in shear with a partial factor of 1.5; "
         f"the track under a stop is held only by pad friction (about {es['slide'] / 1000:.1f} kN), so it creeps along the wall when struck and its gauge is checked after any impact",
         round(es["f"] / 1000, 1), es["cap_f"] / 1000, "kN", closed_by="KND-CAL-001 s17")
-c.claim("S17", "No piece carried up the kiln weighs more than 40 kg (R12)", "Biology", "Ergonomics",
-        "Masses from the model solids (S275 7,850 kg/m3); the margin is under 1 %, and mill tolerance on hollow sections, weld metal and paint can add several per cent, "
-        "so the pieces are weighed before they go up (TRL 4) and D14 (shorter modules) is the real fix",
-        round(tm["worst"], 1), 40.0, "kg", margin=0.02, closed_by="KND-CAL-001 s5")
+c.cited("S17", "No piece carried up the kiln weighs more than the PR-012 limit of 33 kg (the HSE two-person guide, decided as D14 on 2026-10-30)", "Biology", "Ergonomics",
+        "Masses from the model solids (S275 7,850 kg/m3) with five truss modules a side and 2.4 m track modules; mill tolerance on hollow sections, weld metal and paint can add several per cent, "
+        "so the pieces are weighed before they go up (TRL 4)",
+        f"{tm['worst']:.1f} kg for the {tm['worst_name']} against 33 kg; the middle truss modules ({tm['pieces']['truss module B (middle)']:.1f} kg), track modules "
+        f"({tm['pieces']['track module']:.1f} kg), floor panels ({tm['pieces']['floor panel']:.1f} kg) and the outer end truck ({tm['pieces']['end truck, outer']:.1f} kg) are inside it; "
+        "the end modules are over it by their 10 mm foot plates (1.9 kg each)", FIX, closed_by="KND-CAL-001 s5")
 c.cited("S18", "A heel load on a floor panel is carried by the frame and the board", "Physics", "Strength of materials",
         f"Edge angles {fp['s']:.0f} MPa against 275 MPa; board under a 60 mm heel {fp['heel']:.2f} MPa; board strength from the supplier (KND-DEC-001, item 4)",
         f"Frame within yield; board compressive strength at least 0.6 MPa to confirm when bought", PLAUSIBLE)
@@ -98,12 +100,12 @@ c.cited("S20", "The deck stays put on its track in a pre-monsoon storm when it i
 c.cited("S21", "The tie-down anchors hold in the ground beside the kiln", "Physics", "Mechanics and statics",
         f"Each anchor resists {wd['t_chain'] / 1000:.1f} kN at 28 m/s (about {wd['t_chain'] / 1000 * (38 / 28) ** 2:.0f} kN at 38 m/s) against a 19.6 kN chain working load limit (8 mm grade 80, EN 818-2); screw anchor pull-out depends on the yard soil and the sideways pull on the derailment guards and wall tops is to confirm",
         "Anchor pull-out to assess at the partner kiln (survey)", PLAUSIBLE)
-c.claim("S22", "Two people can carry every piece up the kiln within the team-handling guide", "Biology", "Ergonomics",
+c.cited("S22", "Two people can carry every piece up the kiln within the team-handling guide", "Biology", "Ergonomics",
         "ISO 11228-1 reference mass 25 kg; HSE L23: a two-person team handles about two-thirds of the sum of their capabilities (33.3 kg); "
-        "the 3 m track modules (33.4 kg) are also just over it, and a carry up a ramp in heat lowers the limit further; "
-        "fix proposed to Amish (KND-DEC-001 D14: five truss modules a side and 2.4 m track modules, all pieces 33 kg or less)",
-        round(tm["worst"], 1), tm["limit"], "kg")
-c.rows[-1]["verdict"] = FIX           # a safety trade-off on a decided constraint (R12, 40 kg): goes to Amish, not the fix rule
+        "after D14 (five truss modules a side, 2.4 m track modules, decided 2026-10-30) the track modules and the middle truss modules are inside it; "
+        "a carry up a ramp in heat lowers the limit further",
+        f"{tm['worst']:.1f} kg for the {tm['worst_name']} against {tm['limit']:.1f} kg: the end truss modules are {tm['worst'] - tm['limit']:.1f} kg over; "
+        "fix proposed to Amish (KND-DEC-001 D16: foot plates bolted to the end trucks, or six modules a side)", FIX)
 plan_m2 = P["BRIDGE_L"] / 1000 * 2 * P["TRUSS_X"] / 1000
 lift_kn = 0.5 * S.W_ASSUME["rho_air"] * 28.0 ** 2 * plan_m2 * 1.0 / 1000      # lift coefficient 1.0, an upper bound (assumption)
 c.claim("S23", "The storm wind does not lift the parked deck off its track (gust of 28 m/s)", "Physics", "Fluid mechanics",

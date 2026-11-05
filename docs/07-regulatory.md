@@ -3,9 +3,9 @@ doc_id: KND-REG-001
 title: KilnDeck regulatory and standards register
 project: KilnDeck
 doc_type: Regulatory register
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,10 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: First issue (kit 1.8 upgrade)
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Manual handling row follows D14 of 2026-10-30"
 ---
 
 # KilnDeck regulatory and standards register
@@ -26,7 +30,7 @@ KilnDeck is an open engineering reference for a work platform on a brick kiln, n
 | G1 | ISO 14122-3, permanent means of access to machinery: stairs, stepladders and guard-rails | International | Guardrail height (1,100 mm for platforms), knee rail, toe plate (at least 100 mm), post spacing, load | The deck guardrail and gate: top rail 1.1 m, knee rail 0.55 m, toe board 150 mm, posts 1,725 mm apart (the standard's 1,500 mm post spacing is exceeded between truss verticals; the diagonal braces each bay) | Design lead | To assess (post spacing) |
 | G2 | ISO 14122-2, working platforms and walkways | International | Platform floors, openings, loads | The deck floor and gate | Design lead | To assess |
 | G3 | ISO 13732-1, hot surfaces | International | Burn thresholds for contact with hot surfaces | Floor top (74 °C in full sun) and rails; grip sleeves fitted, footwear still needed (STM S12) | Design lead | Applies; floor not met in full sun (PR-007) |
-| G4 | ISO 11228-1, manual handling, lifting and carrying | International | Reference masses for lifting and carrying | Pieces carried up the kiln (PR-012, D14) | Design lead | Applies; at issue (D14) |
+| G4 | ISO 11228-1, manual handling, lifting and carrying | International | Reference masses for lifting and carrying | Pieces carried up the kiln (PR-012, D14) | Design lead | Applies; 33 kg limit adopted (D14); the end truss modules are over it (D16) |
 | G5 | ISO 14120, guards for machinery | International | Fixed and movable guards | Chain guards, sealed chain case, hopper grille (44 mm gaps) | Design lead | To assess (grille gap against reach distances) |
 | G6 | ISO 13857, safety distances to prevent hazard zones being reached | International | Reach through openings | Hopper grille and rotor | Design lead | To assess |
 | G7 | EN 818-2, short link chain for lifting, grade 8 | Europe (used as a catalogue reference) | Working load limits of chain | Storm tie-down chain (D12) | Design lead | Met by design on paper (S21) |

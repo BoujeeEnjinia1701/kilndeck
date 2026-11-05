@@ -1,19 +1,19 @@
 {
  "level": "D3",
  "stage": "P3",
- "hash": "a871d2bcd2f562d7",
+ "hash": "6ea9dcb50e62bd0f",
  "options": {
   "A": {
    "title": "Rolling bridge deck",
-   "parts": 1835,
-   "made_or_bought": 515,
-   "fasteners": 861,
-   "welds": 459,
+   "parts": 2111,
+   "made_or_bought": 585,
+   "fasteners": 1025,
+   "welds": 501,
    "bare": [],
    "bare_share": 0.0,
    "interference": [],
-   "mass_kg": 1202.7,
-   "step_files": 515
+   "mass_kg": 1265.5,
+   "step_files": 585
   },
   "B": {
    "title": "Wall-top cableway",
@@ -31,5 +31,5 @@
  "failures": [],
  "warnings": [],
  "passed": true,
- "seconds": 159.5
+ "seconds": 204.0
 }

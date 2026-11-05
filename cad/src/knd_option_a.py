@@ -121,7 +121,7 @@ def _track(B, M, P, L):
                     for dy in (-14, 14):
                         ch = drill(ch, (xe, y + dy, z1), "z", 13, 40)
             tag = f" (track {k + 1}, {wall})"
-            B.add("UPN 80 channel 3,000" + tag, ch, STEEL, "track")
+            B.add(f"UPN 80 channel {P['TRACK_LEN']:,.0f}" + tag, ch, STEEL, "track")
             B.add("Rail, 20 mm round bar" + tag, rod(P["BAR_D"], x0 + cut0, x1 - cut1, "x", y, z1 + r), BRIGHT, "track")
             n = int((x1 - cut1 - (x0 + cut0)) // 250)          # stitch welds, 40 mm every 250 mm, both sides
             for j in range(n):
@@ -292,11 +292,11 @@ def _trusses(B, M, P, L):
             for dy in (-32, 32):                  # panel bearer cleat bolts at mid-module
                 bot = drill(bot, (xc, ym + dy, zcm), "x", 11, 100)
             topc = hs(cw, cw, ct, y0, y1, "y", xc, (L["top_rail0"] + L["top_rail1"]) / 2)
-            B.add("Bottom chord SHS 40 x 40 x 3, 1,725" + tag, bot, STEEL, key)
-            B.add("Top chord (top rail) SHS 40 x 40 x 3, 1,725" + tag, topc, STEEL, key)
+            B.add(f"Bottom chord SHS 40 x 40 x 3, {y1 - y0:,.0f}" + tag, bot, STEEL, key)
+            B.add(f"Top chord (top rail) SHS 40 x 40 x 3, {y1 - y0:,.0f}" + tag, topc, STEEL, key)
             # diagonal, mirrored about the middle of the deck; the knee rail is cut either side of it
             za, zb = L["chord1"] + dw / 2, L["top_rail0"] - dw / 2
-            ya, yb = y0 + vw + dw / 2, y1 - vw - dw / 2
+            ya, yb = y0 + vw + dw / 2 + P["DIAG_SHIFT"], y1 - vw - dw / 2 - P["DIAG_SHIFT"]
             if k < P["MODULES"] / 2:
                 ya, yb = yb, ya
             Ld = math.hypot(yb - ya, zb - za)
@@ -691,7 +691,7 @@ def _drive(B, M, P, L):
     B.weld("handwheel", cy1 - cy0 - 4, 4, (cx1, cy0 + 2, 306), "+y", "+x", "+z")
     for yy in (cy0 + 10, cy1 - 10):
         B.fix(bolted(10, 6 + cw, (xch - 6, yy, 330), "+x", tag=" (chain case bracket to chord)"), "handwheel")
-    q = B.find("Bottom chord SHS 40 x 40 x 3, 1,725 (truss B module 1)")
+    q = B.find(f"Bottom chord SHS 40 x 40 x 3, {P['BRIDGE_L'] / P['MODULES']:,.0f} (truss B module 1)")
     for yy in (cy0 + 10, cy1 - 10):
         q["shape"] = drill(q["shape"], (tx, yy, 330), "x", 11, 100)
 
@@ -710,7 +710,7 @@ def _carriage(B, M, P, L):
         for yy in (y0 + 20, y1 - 20):
             for dy in by_:
                 rail = drill(rail, (rx, yy + dy, L["crail0"] + 1.5), "z", 11, 3.2)
-        B.add("Carriage rail SHS 40 x 40 x 3, 1,723" + tag, rail, STEEL, "crail")
+        B.add(f"Carriage rail SHS 40 x 40 x 3, {y1 - y0 - 2:,.0f}" + tag, rail, STEEL, "crail")
         for yy in (y0 + 20, y1 - 20):
             ins = cp.break_edges(box(rx - 15, rx + 15, yy - 18, yy + 18, L["crail0"] + 3, L["crail0"] + 23), 3.0)
             for dy in by_:

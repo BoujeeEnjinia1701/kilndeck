@@ -3,9 +3,9 @@ doc_id: KND-OPT-001
 title: KilnDeck concept options
 project: KilnDeck
 doc_type: Concept options
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,11 +13,15 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: First issue (kit 1.8 and 1.9 upgrade); option A is the current design; option B, a wall-top cableway, added; both modelled at D3; scored against KND-URS-001
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Option A counts, mass and cost updated for Amish's decisions of 2026-10-30; S23 now within known science"
 ---
 
 # KilnDeck concept options
 
-Recommendation: keep option A, the rolling bridge deck, which scores 152 of 190 against 124 for option B, the wall-top cableway (18 % apart); the choice is proposed, awaiting Amish (KND-DEC-001 D10, KND-DDR-003). Method: STANDARDS section 21.
+Decision: option A, the rolling bridge deck, which scores 152 of 190 against 124 for option B, the wall-top cableway (18 % apart). Amish decided on 2026-10-30, as recommended: "on the calls - i go with your recommendations" (KND-DEC-001 D10, KND-DDR-003, KND-DDR-004). Method: STANDARDS section 21.
 
 ![Concept options side by side at one scale](../media/options.png)
 
@@ -39,12 +43,12 @@ A wire rope spans the trench between two guyed masts that stand on skids on the 
 
 | Quantity | Option A | Option B |
 | --- | --- | --- |
-| Estimated parts cost (USD) | 2,787 (BOM) | about 900 (estimate from the model mass and bought rope, sheaves, anchors and turnbuckles; not priced line by line) |
-| Mass (kg) | 1,202.7 (deck, carriage, 2 x 12 m of track, storm tie-downs) | 260.0 (two masts and skids, guys, anchors, rope, trolley, bucket, winch) |
+| Estimated parts cost (USD) | 2,905 (BOM) | about 900 (estimate from the model mass and bought rope, sheaves, anchors and turnbuckles; not priced line by line) |
+| Mass (kg) | 1,265.5 (deck, carriage, 2 x 12 m of track, storm tie-downs) | 260.0 (two masts and skids, guys, anchors, rope, trolley, bucket, winch) |
 | Throughput | 18 holes in a 17.5 min round, about 0.49 kg a pocket, 52 L hopper | about 52 s a hole against the 58 s the round allows (STM B4); 22 L bucket, about 10 holes a fill |
-| Effort | 65 N at the hand wheel rim; 12 N at the crank | about 470 N to slide a skid (two people); winch crank light |
-| Parts count (made, bought, fasteners, welds) | 1,835 parts (515 made or bought, 861 fasteners, 459 welds) | 252 parts (103 made or bought, 113 fasteners, 36 welds) |
-| STEM check | Open: 10 rows plausible (S3, S9, S11, S15, S17, S18, S19, S20, S21, S23); S22 to Amish; S8 closed by a fix | Within known science on B1, B2, B5; B3 and B4 plausible; shares S1, S9 and S21 |
+| Effort | 68 N at the hand wheel rim; 12 N at the crank | about 470 N to slide a skid (two people); winch crank light |
+| Parts count (made, bought, fasteners, welds) | 2,111 parts (585 made or bought, 1,025 fasteners, 501 welds) | 252 parts (103 made or bought, 113 fasteners, 36 welds) |
+| STEM check | Open: 8 rows plausible (S3, S9, S11, S15, S18, S19, S20, S21); S17 and S22 fail with a fix proposed (KND-DEC-001 D16); S8 closed by a fix | Within known science on B1, B2, B5; B3 and B4 plausible; shares S1, S9 and S21 |
 
 ## Scoring
 
@@ -57,12 +61,12 @@ A wire rope spans the trench between two guyed masts that stand on skids on the 
 | Keep the round, fuel in the hole | UR-003 | 3 | 4 | 2 | A: spout within 17 mm; B: aiming a swinging bucket by line, about 52 s a hole against 58 s |
 | By hand | UR-004 | 3 | 5 | 4 | Both manual; B needs two lines worked together |
 | Less heat | UR-005 | 3 | 3 | 4 | A stands over the fire (floor 74 °C in full sun); B on the wall top beside it |
-| Fits my kiln | UR-007 | 3 | 4 | 3 | A: pads at 0.15 MPa; B: mast skids plus six anchors in the yard per wall |
-| Two-person carry | UR-008 | 3 | 3 | 3 | A: 40 kg truss modules (D14); B: a 2.4 m SHS 100 x 5 mast is about 35 kg |
+| Fits my kiln | UR-007 | 3 | 4 | 3 | A: pads at 0.154 MPa; B: mast skids plus six anchors in the yard per wall |
+| Two-person carry | UR-008 | 3 | 3 | 3 | A: 32.9 kg middle truss modules, 34.8 kg end modules (D14, D16); B: a 2.4 m SHS 100 x 5 mast is about 35 kg |
 | Stays put | UR-013 | 3 | 4 | 3 | A: lock pin, stops, storm clamps; B: the bucket hangs on a winch pawl over the fire |
 | Steady dose | UR-006 | 2 | 4 | 2 | A: metering rotor; B: the bucket is tipped by eye |
-| Moves with the fire | UR-009 | 2 | 4 | 2 | A: relay 3 m track modules; B: move both skids and reset six anchors every row |
-| Affordable | UR-010 | 2 | 3 | 4 | A USD 2,787; B about USD 900 (estimate) |
+| Moves with the fire | UR-009 | 2 | 4 | 2 | A: relay 2.4 m track modules; B: move both skids and reset six anchors every row |
+| Affordable | UR-010 | 2 | 3 | 4 | A USD 2,905; B about USD 900 (estimate) |
 | Local build | UR-011 | 2 | 4 | 3 | B needs wire rope terminations and a winch |
 | Season-proof | UR-012 | 2 | 4 | 3 | B: rope and guys wear in heat, dust and storms |
 | Easy upkeep | UR-014 | 1 | 3 | 3 | A: chains and many bolts; B: rope inspection |
@@ -73,4 +77,4 @@ Cost against the value-engineering target, buildability and maintenance are scor
 
 ## Recommendation
 
-Option A, proposed, awaiting Amish (KND-DEC-001 D10). It scores 18 % above option B, so it is not a choice within 10 %. Option A also carries the whole TRL 3 record (calculation note, drawings, build plan). The runner-up's best idea to graft onto it: a small wall-top cableway from the outer wall could serve the curved kiln ends, which option A does not reach (PR-001), or lift fuel to the hopper's refill point; both are suggestions for a later stage, not added here.
+Option A, decided by Amish on 2026-10-30 (KND-DEC-001 D10). It scores 18 % above option B, so it is not a choice within 10 %. Option A also carries the whole TRL 3 record (calculation note, drawings, build plan). The runner-up's best idea to graft onto it: a small wall-top cableway from the outer wall could serve the curved kiln ends, which option A does not reach (PR-001), or lift fuel to the hopper's refill point; both are suggestions for a later stage, not added here.

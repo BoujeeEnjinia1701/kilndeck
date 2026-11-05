@@ -132,7 +132,7 @@ def blueprint():
     s.add_notes("Key figures", [
         f"Deck spans {M.PARAMS['GAUGE'] / 1000:.1f} m between wall-top tracks",
         f"Floor {L['floor']:.0f} mm above the wall top; 1.1 m guardrails",
-        f"Deck about {ms['deck']:.0f} kg; no piece over 40 kg",
+        f"Deck about {ms['deck']:.0f} kg; heaviest piece about 35 kg (limit 33 kg)",
         f"Rated load 250 kg; hand wheel force about {t['hand']:.0f} N",
         f"Hopper {h['litres']:.0f} L, about {h['coal_kg']:.0f} kg of coal",
         f"Rotor about {r['kg_pocket']:.2f} kg of coal per pocket (est.)",

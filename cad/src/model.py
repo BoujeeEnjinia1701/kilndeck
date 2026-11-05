@@ -8,7 +8,7 @@ Exports into cad/step and cad/stl:
     kilndeck-assembly.step              the whole prototype: wall-top track, rolling deck and hopper carriage
     kilndeck-deck.step / .stl           the rolling deck (end trucks, trusses, floor, end frames, drive)
     kilndeck-carriage.step / .stl       the hopper carriage with hopper, metering rotor and swing spout
-    kilndeck-track-module.step / .stl   one 3 m track module on its levelling pads
+    kilndeck-track-module.step / .stl   one 2.4 m track module on its levelling pads
 
 Axes: X runs along the kiln (the way the deck travels), Y runs across the trench from the outer
 wall (-Y) to the inner wall (+Y), Z is up with the kiln wall tops at z = 0. The deck spans the
@@ -38,10 +38,10 @@ PARAMS = {
     # Kiln (assumptions, KND-CAL-001 section 1): trench width between wall faces, track centres
     "TRENCH": 6000.0, "GAUGE": 6600.0,
     # 1 levelling pads: X x Y x thickness, pitch along the wall
-    "PAD": (200.0, 150.0, 10.0), "PAD_PITCH": 1000.0,
+    "PAD": (200.0, 150.0, 10.0), "PAD_PITCH": 800.0,
     # 2 track modules: UPN 80 lying flanges down (width across, height, web, flange), module length,
     #   number per wall, expansion gap at each joint, round bar rail diameter, fishplate (L x H x t)
-    "UPN": (80.0, 45.0, 6.0, 8.0), "TRACK_LEN": 3000.0, "TRACK_N": 4, "TRACK_GAP": 6.0, "BAR_D": 20.0,
+    "UPN": (80.0, 45.0, 6.0, 8.0), "TRACK_LEN": 2400.0, "TRACK_N": 5, "TRACK_GAP": 6.0, "BAR_D": 20.0,
     "FISH": (200.0, 30.0, 6.0),
     # 3 end stops on the track: length along X, height above the channel web
     "STOP": (60.0, 200.0),
@@ -59,8 +59,10 @@ PARAMS = {
     "WHEEL_IN_GROOVE": 44.0,
     # 6 side trusses: centre line x, length, modules per side, chord SHS (w, t), vertical SHS (w, t),
     #   diagonal and knee rail SHS (w, t), toe board (height above the floor, thickness)
-    "TRUSS_X": 560.0, "BRIDGE_L": 6900.0, "MODULES": 4, "CHORD": (40.0, 3.0), "VERT": (40.0, 4.0),
+    "TRUSS_X": 560.0, "BRIDGE_L": 6900.0, "MODULES": 5, "CHORD": (40.0, 3.0), "VERT": (40.0, 4.0),
     "DIAG": (30.0, 3.0), "TOE": (150.0, 2.0),
+    # diagonal feet set 4 mm in from the verticals so the splice bolt heads clear them with the shorter modules (KND-DEC-001 D14)
+    "DIAG_SHIFT": 4.0,
     # guardrail heights above the floor top (KND-DDR-002: 1.1 m top rail, knee rail at half height)
     "RAIL_H": 1100.0, "KNEE_H": 550.0,
     # 7 bearers: panel bearers SHS 40 x 40 x 3; frame bearers RHS 60 x 40 x 4 with end plates
@@ -475,7 +477,7 @@ def truss_module(p=PARAMS, side=1, k=0, toe=True):
         parts.append(tube_z(xc, ya + vw / 2, L["chord1"], L["top_rail0"], vw, vt))
     # diagonal, alternating direction so the pairs mirror about the middle
     za, zb = L["chord1"] + dw / 2, L["top_rail0"] - dw / 2
-    ya, yb = y0 + vw + dw / 2, y1 - vw - dw / 2
+    ya, yb = y0 + vw + dw / 2 + p["DIAG_SHIFT"], y1 - vw - dw / 2 - p["DIAG_SHIFT"]
     if (k < p["MODULES"] / 2):
         ya, yb = yb, ya
     d = tube_yz(xc, ya, za, yb, zb, dw, dt) & bx(xc - 30, xc + 30, y0 + vw, y1 - vw, L["chord1"], L["top_rail0"])
@@ -535,7 +537,7 @@ def _bearers(p, kind):
 
 
 def panel_bounds(p=PARAMS):
-    """Y extents of the eight floor panels, between the end frames, with a 4 mm gap between panels."""
+    """Y extents of the floor panels (ten with five truss modules a side), between the end frames, with a 4 mm gap between panels."""
     half = p["BRIDGE_L"] / 2
     vw = p["VERT"][0]
     yend = half - vw - 5.0

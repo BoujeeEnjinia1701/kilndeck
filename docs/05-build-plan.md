@@ -3,9 +3,9 @@ doc_id: KND-BLD-001
 title: KilnDeck prototype build plan
 project: KilnDeck
 doc_type: Build plan
-version: "0.2"
+version: "0.3"
 status: Draft
-date: '2026-10-29'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -17,6 +17,10 @@ revisions:
   date: '2026-10-29'
   author: Amish Chadha
   change: Kit 1.9.1 upgrade; storm clamps and tie-downs added (group 23, step 18, KND-DEC-001 D12); fits found by the part-by-part model (D13) written into the making steps
+- version: "0.3"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Decisions of 2026-10-30 (KND-DDR-004): five truss modules a side and 2.4 m track modules for the 33 kg limit (D14), 7 m/s working limit and clamps at every shift end (D11); counts of modules, pads, bearers, panels, pillow blocks and rail lengths; making sketches and step pictures regenerated"
 ---
 
 # KilnDeck prototype build plan
@@ -29,9 +33,9 @@ revisions:
 
 *Figure 1. Every component pulled apart and numbered in build order.*
 
-The prototype is a walkway deck 6.9 m long that spans the trench of a bull's trench brick kiln and rolls along the kiln on two tracks, one on each wall top, so the fireman can feed fuel without standing on the crust. Figure 1 shows the 23 groups of parts in the order you make or fit them: 12 m of track on each wall, two end trucks on four wheels, two side trusses that are also the guardrails, bearers and eight insulated floor panels, an end rail and a gate, a hand-wheel travel drive, a hopper carriage with its metering rotor and swing spout, and the storm clamps and tie-downs. Almost everything is cut, drilled and stick welded from stock steel hollow section, channel and plate; the wheels, bearings, chains, sprockets, hand wheel, insulation board and grip sleeves are bought. Every piece is bolted together on the kiln, and none weighs more than 40 kg. The parts cost about USD 2,787 from the bill of materials.
+The prototype is a walkway deck 6.9 m long that spans the trench of a bull's trench brick kiln and rolls along the kiln on two tracks, one on each wall top, so the fireman can feed fuel without standing on the crust. Figure 1 shows the 23 groups of parts in the order you make or fit them: 12 m of track on each wall, two end trucks on four wheels, two side trusses of five modules each that are also the guardrails, bearers and ten insulated floor panels, an end rail and a gate, a hand-wheel travel drive, a hopper carriage with its metering rotor and swing spout, and the storm clamps and tie-downs. Almost everything is cut, drilled and stick welded from stock steel hollow section, channel and plate; the wheels, bearings, chains, sprockets, hand wheel, insulation board and grip sleeves are bought. Every piece is bolted together on the kiln, and none weighs more than about 35 kg (33 kg for all but the two end truss modules, KND-DEC-001 D14 and D16). The parts cost about USD 2,905 from the bill of materials.
 
-> **Safety:** KilnDeck carries a person over a burning kiln, and its drive and rotor have pinch points. The build involves stick welding, grinding, carrying 40 kg pieces up the kiln and working at the edge of the kiln walls. Assemble the deck only over the cold zone of the kiln (where bricks are being set or drawn and there is no fire beneath), never over the fire. No one stands on the deck over a fire until the safety stops in section 6 are cleared; that is TRL 4 work and on hold.
+> **Safety:** KilnDeck carries a person over a burning kiln, and its drive and rotor have pinch points. The build involves stick welding, grinding, carrying pieces of up to 35 kg up the kiln and working at the edge of the kiln walls. Assemble the deck only over the cold zone of the kiln (where bricks are being set or drawn and there is no fire beneath), never over the fire. No one stands on the deck over a fire until the safety stops in section 6 are cleared; that is TRL 4 work and on hold.
 
 ## 2. What changed to make it buildable
 
@@ -41,12 +45,12 @@ The concept showed what the deck does; its parts had no sections, joints or fixi
 
 | Component | The concept had | The buildable design has | Why |
 | --- | --- | --- | --- |
-| Track | Rails on supports | 3 m channel modules with a round bar rail, on levelling pads, joined by slotted fishplates (Figure 3) | Stock steel, 33 kg pieces, joints that slide as the track heats |
+| Track | Rails on supports | 2.4 m channel modules with a round bar rail, on levelling pads, joined by slotted fishplates (Figure 3) | Stock steel, 27 kg pieces, joints that slide as the track heats (KND-DEC-001 D14) |
 | Track ends | Nothing | Bolted end stops with rubber faces | The deck must not run off a track |
 | End trucks and wheels | Flanged wheels | Box-section trucks with derailment guards; U-groove wheels, the inner pair with a wide groove (Figure 5) | A lifted wheel lands on the guards, never the crust; the deck can grow with heat |
-| Deck and guardrail | A platform and a separate rail | Two bolted side trusses whose top chords are the 1.1 m top rails (Figure 6) | Spans 6.6 m and keeps every piece under 40 kg |
+| Deck and guardrail | A platform and a separate rail | Two bolted side trusses whose top chords are the 1.1 m top rails (Figure 6) | Spans 6.6 m in five 1,380 mm modules a side and keeps every piece near the 33 kg team limit (D14; the end modules are 34.8 kg, D16) |
 | Stiff posts | Not defined | Frame bearers bolted to cleats at the ends and splices (Figure 8) | A push on the top rail is carried into the floor |
-| Floor | Insulated floor | Bolted panels: steel tread, calcium silicate board, aluminium underside (Figure 10) | 30 kg each; the bright underside reflects crust heat |
+| Floor | Insulated floor | Bolted panels: steel tread, calcium silicate board, aluminium underside (Figure 10) | 25 kg each; the bright underside reflects crust heat |
 | Moving and holding the deck | Pushed by hand; a separate brake | Hand wheel and line shaft driving one wheel at each end; a lock pin in the hand wheel (Figures 13 and 14) | Both ends move together; one pin holds the deck |
 | Hopper | On the deck | On a carriage along the outside of truss B (Figure 16) | The floor stays whole; one hopper serves the whole row |
 | Rotor | Turned at the hopper | Chain up to a crank above the guardrail (Figure 19) | Turned from inside the rail |
@@ -64,24 +68,24 @@ Make and check each component before the assembly step that needs it. Sizes are 
 
 *Figure 2. Track module making sketch (KND-DWG-101).*
 
-**What it is and what it is made from.** The two tracks the deck runs on, one on each wall top, in four 3 m modules per wall for the 12 m demonstration run. UPN 80 steel channel, S275; 20 mm round bar; 6 x 30 mm flat bar for fishplates; 10 mm plate for 26 levelling pads; 8 mm plate for four end stops.
+**What it is and what it is made from.** The two tracks the deck runs on, one on each wall top, in five 2.4 m modules per wall for the 12 m demonstration run. UPN 80 steel channel, S275; 20 mm round bar; 6 x 30 mm flat bar for fishplates; 10 mm plate for 32 levelling pads; 8 mm plate for four end stops.
 
 **How to make it.**
 
-1. Saw eight 3,000 mm lengths of channel with square ends; deburr.
+1. Saw ten 2,400 mm lengths of channel with square ends; deburr.
 2. Lay each one flanges down, so the flat 80 mm web is on top.
 3. Lay the 20 mm bar along the middle of the web and stitch weld both sides, 40 mm welds every 250 mm. On the four end modules, stop the bar 70 mm short of the outer end.
-4. Cut 12 fishplates 6 x 30 x 200 mm and slot each with two 14 x 24 mm slots, 100 mm apart. Drill matching 13 mm holes in both flanges 50 mm from each module end.
-5. Cut 26 pads 200 x 150 x 10 mm, plus a few 1 and 2 mm shims of the same size.
+4. Cut 16 fishplates 6 x 30 x 200 mm and slot each with two 14 x 24 mm slots, 100 mm apart. Drill matching 13 mm holes in both flanges 50 mm from each module end.
+5. Cut 32 pads 200 x 150 x 10 mm, plus a few 1 and 2 mm shims of the same size.
 6. Make four end stops: a box of 8 mm plate 60 x 80 x 200 mm, with a 10 mm rubber pad bonded to the face the truck meets and two 13 mm holes in its foot that match holes in the channel web.
 
-**How it fits the parts next to it.** Each module lies on pads under its flanges, one pad every 1,000 mm and one under every joint. Two modules meet over a pad with a 6 mm gap; a fishplate each side, bolted through the slots, lets the joint slide as the track heats (Figure 3). The stops bolt down through the web at each track end.
+**How it fits the parts next to it.** Each module lies on pads under its flanges, one pad about every 800 mm and one under every joint. Two modules meet over a pad with a 6 mm gap; a fishplate each side, bolted through the slots, lets the joint slide as the track heats (Figure 3). The stops bolt down through the web at each track end.
 
 ![Figure 3. Track joint on a pad](05-build-plan/joint-01.png)
 
 *Figure 3. Track joint on a pad, with fishplates.*
 
-**Check before moving on.** Each bar is straight within 2 mm over 3 m. The fishplate bolts slide in their slots when finger tight.
+**Check before moving on.** Each bar is straight within 2 mm over 2.4 m. The fishplate bolts slide in their slots when finger tight.
 
 ### 3.2 End trucks
 
@@ -119,13 +123,13 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 6. Side truss module making sketch (KND-DWG-103).*
 
-**What it is and what it is made from.** Eight welded panels, four per side, that span the trench and are the guardrail. SHS 40 x 40 x 3 for both chords, SHS 40 x 40 x 4 for the end verticals, SHS 30 x 30 x 3 for the diagonal and knee rail, 2 mm sheet for the toe board, 8 mm plate for the bearer cleats, 10 mm plate for the foot plates of the four end modules, 6 mm plate for the carriage rail brackets on the four side B modules.
+**What it is and what it is made from.** Ten welded panels, five per side, that span the trench and are the guardrail. SHS 40 x 40 x 3 for both chords, SHS 40 x 40 x 4 for the end verticals, SHS 30 x 30 x 3 for the diagonal and knee rail, 2 mm sheet for the toe board, 8 mm plate for the bearer cleats, 10 mm plate for the foot plates of the four end modules, 6 mm plate for the carriage rail brackets on the five side B modules.
 
 **How to make it.**
 
 1. Build a flat jig on the workshop floor so every module comes out the same.
-2. Cut two chords 1,725 mm long and two end verticals 1,103 mm long. Lay them out as a rectangle with the chords' centre lines 1,143 mm apart and the verticals flush with the chord ends. Weld all round.
-3. Fit the knee rail between the verticals with its centre 593 mm above the bottom chord's top face (550 mm above the floor) and one diagonal corner to corner. Make the diagonals of the two middle modules of each side run the other way from the end modules, so they mirror about the middle.
+2. Cut two chords 1,380 mm long and two end verticals 1,103 mm long. Lay them out as a rectangle with the chords' centre lines 1,143 mm apart and the verticals flush with the chord ends. Weld all round.
+3. Fit the knee rail between the verticals with its centre 593 mm above the bottom chord's top face (550 mm above the floor) and one diagonal corner to corner. Make the diagonals of the first three modules of each side, from the gate end, run one way and those of the last two the other way, so they change direction at the middle splice. Set each diagonal's feet 4 mm in from the verticals so the splice bolt heads clear them.
 4. Weld a 2 mm toe board along the inner edge of the bottom chord, standing 193 mm above it (150 mm above the floor) and stopping 30 mm short of each vertical so it clears the splice bolts (D13).
 5. Drill three pairs of 13 mm holes through each end vertical, at 60, 560 and 1,060 mm up from the bottom chord, 15 mm each side of its centre, for the splice bolts. Drill the matching modules clamped together.
 6. Weld an 8 mm cleat 80 mm wide to the inner face of the bottom chord at each end, reaching 160 mm below it (to 190 mm above the wall top, D13), with a column of three 13 mm holes under each vertical so that no bolt passes through the chord and the carriage guide rollers run on a clear chord face.
@@ -138,7 +142,7 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 7. Truss foot plate on the end truck seat.*
 
-**Check before moving on.** Each module is flat within 3 mm and weighs about 39 kg. Two people carry it.
+**Check before moving on.** Each module is flat within 3 mm and weighs about 33 kg (the end modules about 35 kg, 1.4 to 1.8 kg over the 33 kg limit: KND-DEC-001 D16). Two people carry it.
 
 ### 3.5 Cross bearers
 
@@ -146,13 +150,13 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 8. Frame bearer and panel bearer making sketch (KND-DWG-104).*
 
-**What it is and what it is made from.** Five frame bearers (at the two ends and the three splices) and four panel bearers (in the middle of each module) that carry the floor across the deck. RHS 60 x 40 x 4 and SHS 40 x 40 x 3; 8 mm plate; 6 mm plate for the line shaft hangers.
+**What it is and what it is made from.** Six frame bearers (at the two ends and the four splices) and five panel bearers (in the middle of each module) that carry the floor across the deck. RHS 60 x 40 x 4 and SHS 40 x 40 x 3; 8 mm plate; 6 mm plate for the line shaft hangers.
 
 **How to make it.**
 
-1. Frame bearers: cut five RHS lengths of 1,048 mm, 60 mm side upright. Weld an 8 mm end plate 80 mm wide, reaching 160 mm below the bearer's lower edge, on each end (1,064 mm overall) with a column of three 13 mm holes that match the cleats (D13). On each end frame bearer weld a 40 x 40 x 4 ledger angle on the inner face to carry the end floor panels.
+1. Frame bearers: cut six RHS lengths of 1,048 mm, 60 mm side upright. Weld an 8 mm end plate 80 mm wide, reaching 160 mm below the bearer's lower edge, on each end (1,064 mm overall) with a column of three 13 mm holes that match the cleats (D13). On each end frame bearer weld a 40 x 40 x 4 ledger angle on the inner face to carry the end floor panels.
 2. Under each frame bearer, 380 mm to side B of the middle, weld a 6 mm hanger plate for a pillow block, its bottom 30 mm above the line shaft centre (see section 3.8).
-3. Panel bearers: cut four SHS lengths of 1,080 mm with a short angle cleat at each end and two 11 mm holes.
+3. Panel bearers: cut five SHS lengths of 1,080 mm with a short angle cleat at each end and two 11 mm holes.
 
 **How it fits the parts next to it.** Each frame bearer's end plates bolt to the cleats of the two trusses with three M12 bolts each end. With the end verticals, this makes a stiff U-frame that keeps the posts upright under a push on the top rail (Figure 9). The tops of all bearers are flush with the tops of the bottom chords.
 
@@ -168,11 +172,11 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 10. Floor panel making sketch (KND-DWG-105).*
 
-**What it is and what it is made from.** Eight panels about 860 x 1,070 mm that the fireman stands on. 40 x 40 x 4 angle; 2 mm steel sheet; 37 mm calcium silicate board; 1 mm aluminium sheet.
+**What it is and what it is made from.** Ten panels about 690 x 1,070 mm that the fireman stands on. 40 x 40 x 4 angle; 2 mm steel sheet; 37 mm calcium silicate board; 1 mm aluminium sheet.
 
 **How to make it.**
 
-1. Weld a rectangle of angle, legs inward, 1,070 mm across the deck and the length of its bay (about 858 mm; the two end panels are about 818 mm). Panel 1, at the gate end, has an 86 x 46 mm notch in its side B half for the hand wheel chain case.
+1. Weld a rectangle of angle, legs inward, 1,070 mm across the deck and the length of its bay (about 686 mm; the two end panels are about 643 mm). Panel 2 from the gate end has an 86 x 46 mm notch in its side B half for the hand wheel chain case.
 2. Rivet the aluminium sheet under the frame, bright side down. Do not paint it: its job is to reflect heat from the crust.
 3. Cut the board to fit inside the frame, dry, with no gaps.
 4. Stitch weld the 2 mm top sheet to the frame and coat it with light grey anti-slip paint. Drill two 10 mm drain holes at one corner.
@@ -183,7 +187,7 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 11. Two floor panels meeting over a bearer, cut through.*
 
-**Check before moving on.** Each panel weighs about 30 kg and is flat within 3 mm.
+**Check before moving on.** Each panel weighs about 25 kg and is flat within 3 mm.
 
 ### 3.7 End rail and gate
 
@@ -210,7 +214,7 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 13. Hand wheel, chain case and lock pin making sketch (KND-DWG-107).*
 
-**What it is and what it is made from.** The hand wheel that moves the deck, a line shaft under the floor and a chain drive to one wheel at each end. 25 mm bright steel bar in three lengths; two rigid couplings; three UCP205 pillow blocks on hanger plates beside the splice bearers and two UCFL205 flange bearings bolted to the truck beams (D13); three ISO 08B-1 chains and six 15-tooth sprockets; a 320 mm hand wheel; 2 mm sheet for the chain case and guards; a spring lock plunger.
+**What it is and what it is made from.** The hand wheel that moves the deck, a line shaft under the floor and a chain drive to one wheel at each end. 25 mm bright steel bar in three lengths; two rigid couplings; four UCP205 pillow blocks on hanger plates beside the splice bearers and two UCFL205 flange bearings bolted to the truck beams (D13); three ISO 08B-1 chains and six 15-tooth sprockets; a 320 mm hand wheel; 2 mm sheet for the chain case and guards; a spring lock plunger.
 
 **How to make it.**
 
@@ -219,7 +223,7 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 3. Hand wheel: if its rim has no holes, drill twelve 11 mm holes on a 298 mm circle. Fit the spring plunger on the case so its pin drops into a rim hole.
 4. End guards: a 2 mm sheet cover for each end chain drive, bolted to the outside of the truck.
 
-**How it fits the parts next to it.** The line shaft runs under the floor on pillow blocks bolted to the hangers under the frame bearers, through the 32 mm holes in both trucks, to a sprocket at each end; a short chain drives the sprocket on the side B wheel axle (Figure 14). The chain case stands on the end frame bearer, passes up through the notch in floor panel 1 and carries the hand wheel on side B, about 0.7 m in from the gate (Figure 15).
+**How it fits the parts next to it.** The line shaft runs under the floor on pillow blocks bolted to the hangers under the frame bearers, through the 32 mm holes in both trucks, to a sprocket at each end; a short chain drives the sprocket on the side B wheel axle (Figure 14). The chain case stands on the end frame bearer, passes up through the notch in floor panel 2 and carries the hand wheel on side B, about 0.7 m in from the gate (Figure 15).
 
 ![Figure 14. End chain drive](05-build-plan/joint-06.png)
 
@@ -237,9 +241,9 @@ Buy four 100 mm steel U-groove wheels with sealed ball bearings, each rated at l
 
 *Figure 16. Carriage rail making sketch (KND-DWG-108).*
 
-**What it is and what it is made from.** Four lengths of SHS 40 x 40 x 3, 1,723 mm each, that the hopper carriage runs on along the outside of truss B, with two small end stops.
+**What it is and what it is made from.** Five lengths of SHS 40 x 40 x 3, 1,378 mm each, that the hopper carriage runs on along the outside of truss B, with two small end stops.
 
-**How to make it.** Cut four lengths with square ends. Drill two 11 mm holes at each end to match the shelf brackets. On the two end lengths, weld a 40 x 40 x 20 mm stop block on top, 3,090 mm each side of the deck middle.
+**How to make it.** Cut five lengths with square ends. Drill two 11 mm holes at each end to match the shelf brackets. On the two end lengths, weld a 40 x 40 x 20 mm stop block on top, 3,090 mm each side of the deck middle.
 
 **How it fits the parts next to it.** The rail sits on the shelf brackets of the truss B end verticals, 20 mm out from them, top 750 mm above the floor, held by two M10 bolts at each bracket. Ends meet flush over the splices.
 
@@ -350,7 +354,7 @@ Assemble on the kiln over the cold zone (no fire beneath), on a straight side. T
 
 *Figure 23. Step 1: levelling pads on both wall tops.*
 
-Set out two lines 6,600 mm apart, one on each wall top. Bed a pad every 1,000 mm on a thin lime-sand mortar and level all pads across the trench within 5 mm, using shims. **Hold point:** the wall-top survey must be complete and the walls judged sound before any pad is laid.
+Set out two lines 6,600 mm apart, one on each wall top. Bed a pad about every 800 mm, and one under each track joint, on a thin lime-sand mortar and level all pads across the trench within 5 mm, using shims. **Hold point:** the wall-top survey must be complete and the walls judged sound before any pad is laid.
 
 ### Step 2: track modules
 
@@ -358,7 +362,7 @@ Set out two lines 6,600 mm apart, one on each wall top. Bed a pad every 1,000 mm
 
 *Figure 24. Step 2: track modules and fishplates.*
 
-Lay the modules flanges down on the pads with 6 mm gaps; bolt the fishplates finger tight plus a quarter turn so the joints can slide. Check the gauge, 6,600 mm between the bar centres, every 1,000 mm, within 5 mm.
+Lay the modules flanges down on the pads with 6 mm gaps; bolt the fishplates finger tight plus a quarter turn so the joints can slide. Check the gauge, 6,600 mm between the bar centres, at every joint and mid-module, within 5 mm.
 
 ### Step 3: end stops
 
@@ -382,7 +386,7 @@ Fit the wheels in the forks (wide-groove wheels on the inner truck). Set both tr
 
 *Figure 27. Step 5: side truss A on its trucks.*
 
-Set trestles across the cold zone at the height of the truck seats. Lay the four side A modules on them, bolt the splices with six M12 bolts each, then lower the foot plates onto the seats and bolt them with four M12 bolts each.
+Set trestles across the cold zone at the height of the truck seats. Lay the five side A modules on them, bolt the splices with six M12 bolts each, then lower the foot plates onto the seats and bolt them with four M12 bolts each.
 
 ### Step 6: side truss B
 
@@ -398,7 +402,7 @@ The same on side B. Remove the gauge bar.
 
 *Figure 29. Step 7: frame bearers and panel bearers.*
 
-Bolt the five frame bearers to the cleats with a column of three M12 bolts at each end, then the four panel bearers with two M10 bolts each end. Tighten the frame bearers fully; they make the posts stiff.
+Bolt the six frame bearers to the cleats with a column of three M12 bolts at each end, then the five panel bearers with two M10 bolts each end. Tighten the frame bearers fully; they make the posts stiff.
 
 ### Step 8: floor panels
 
@@ -406,7 +410,7 @@ Bolt the five frame bearers to the cleats with a column of three M12 bolts at ea
 
 *Figure 30. Step 8: floor panels.*
 
-Lay the eight panels aluminium side down, panel 1 (notched) at the gate end on side B; bolt each end with two M8 bolts. Remove the trestles.
+Lay the ten panels aluminium side down, panel 2 (notched) from the gate end on side B; bolt each end with two M8 bolts. Remove the trestles.
 
 ### Step 9: end rail, gate and grips
 
@@ -446,7 +450,7 @@ Lower the chain case through the notch in panel 1 onto its sprocket on the line 
 
 *Figure 35. Step 13: carriage rail on side B.*
 
-Bolt the four rail lengths on the shelf brackets, joints flush.
+Bolt the five rail lengths on the shelf brackets, joints flush.
 
 ### Step 14: carriage frame
 
@@ -486,7 +490,7 @@ Push the collar up onto the outlet lip and fit its retaining ring.
 
 *Figure 40. Step 18: storm clamps and tie-downs.*
 
-Fit the lashing lugs and shackles at the truck ends, set the four anchors, and run a chain from each lug to its anchor through a tensioner. The clamps and chains are set whenever a storm threatens and at the end of every shift (KND-DEC-001 D11); they are released before the deck is moved. The deck is complete.
+Fit the lashing lugs and shackles at the truck ends, set the four anchors, and run a chain from each lug to its anchor through a tensioner. Working limit (KND-DEC-001 D11, decided 2026-10-30): the deck is worked in winds up to 7 m/s on level track; above that, and at the end of every shift whatever the weather, the clamps and chains are set; they are released before the deck is moved. The deck is complete.
 
 ## 5. First checks
 
@@ -496,7 +500,7 @@ These are listed for TRL 4; a test report records them.
 
 | Check | Requirement | How | Pass when |
 | --- | --- | --- | --- |
-| Pieces under 40 kg | R12 | Weigh each piece before it goes up | Every piece 40 kg or less |
+| Pieces under 33 kg | PR-012 | Weigh each piece before it goes up | Every piece 33 kg or less (the end truss modules are expected at 34.4 and 34.8 kg: D16) |
 | Guardrail | R2 | CalRig: 1.5 kN horizontal on the top rail at mid-module, at a splice and at each end post, over the cold zone | No permanent set; movement under load noted |
 | Deck proof | R3 | 375 kg of sandbags at mid-span on side B, over the cold zone | No permanent set; deflection noted |
 | Track retention | R13 | Roll the empty deck gently into each end stop; lift one wheel 25 mm with a jack | Stops hold; the guards catch the channel |
@@ -519,7 +523,7 @@ Work stops at each of these points until what is listed is true.
 5. **Before the deck is rolled from the cold zone toward the fire:** the track ahead is laid and gauged, nothing is left on the crust, and the fireman wears heat-resistant footwear and gloves.
 6. **Before fuel goes into the hopper:** the grille is in place, and the rotor is only ever cleared with the crank, never by hand.
 7. **At every row:** the lock pin is in before the carriage clamp is released or the spout is swung.
-8. **Before leaving the deck parked, and whenever a storm threatens:** the four clamps are screwed down and the four lashing chains are tight (D11 proposes the same at every shift end).
+8. **Before leaving the deck parked, at the end of every shift, and whenever the wind passes 7 m/s or a storm threatens:** the four clamps are screwed down and the four lashing chains are tight (D11, decided 2026-10-30). On a graded track the hand force is used up at a lower wind speed (about 5 m/s on a 2 % grade), so the limit there is set at the survey.
 9. **Never:** work over the fire from outside the deck; open the gate while the deck is moving; stand on the step or carriage.
 
 ## 7. Tools, skills and workspace
@@ -536,4 +540,4 @@ Work stops at each of these points until what is listed is true.
 - Pictures: `cad/src/build_plan_media.py`.
 - Calculation note: `docs/04-calcs/01-sizing.md` (KND-CAL-001) and `docs/04-calcs/sizing.py`.
 - Bill of materials: `bom/bom.csv`.
-- Decisions: `docs/decisions/0001-trl2-review-decisions.md`, `docs/decisions/0002-design-for-construction.md` and `docs/06-design-decisions.md`.
+- Decisions: `docs/decisions/0004-decisions-2026-10-30.md` (KND-DDR-004), `docs/decisions/0003-concept-selection.md`, `docs/decisions/0001-trl2-review-decisions.md`, `docs/decisions/0002-design-for-construction.md` and `docs/06-design-decisions.md`.

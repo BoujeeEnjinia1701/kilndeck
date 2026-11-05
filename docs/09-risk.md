@@ -3,9 +3,9 @@ doc_id: KND-RSK-001
 title: KilnDeck risk register and hazard analysis
 project: KilnDeck
 doc_type: Risk register
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,6 +13,10 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: First issue (kit 1.8 upgrade) with preliminary hazard analysis and first-pass design FMEA (P3)
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Risks P5, P6, H3, H4 and H9 follow the decisions of 2026-10-30 (D11, D14); D16 proposed"
 ---
 
 # KilnDeck risk register and hazard analysis
@@ -31,8 +35,8 @@ The top risks are a kiln wall giving way under a track pad, a fall or a burn on 
 | P2 | Wall bearing limit below 0.15 MPa | Old, hot or cracked kiln walls | Larger pads or a different support; PR-008 not met | 2 | 4 | Structural engineer | Survey the partner kiln before TRL 4 |
 | P3 | Firemen reject a deck over the fire | Radiant heat, unfamiliar, slower at first | No use | 3 | 5 | Co-design partner | Interviews first; option B kept on file |
 | P4 | Floor too hot by day | Sun on the tread sheet | PR-007 not met; burns through thin soles | 4 | 3 | Design lead | Shade canopy with a wind check at TRL 4 (KND-DDR-002, A3) |
-| P5 | Piece masses above the team guide | 40 kg limit decided before the guide was checked | Strain on the carriers | 4 | 3 | Amish | D14 |
-| P6 | Prices higher than estimated | Rigging and bearings estimated, not quoted | Cost above USD 2,787 | 3 | 2 | Design lead | Quotes at TRL 4; target margin USD 713 |
+| P5 | Piece masses above the team guide | Two end truss modules weigh 34.4 and 34.8 kg against the 33 kg limit of D14 | Strain on the carriers | 3 | 3 | Amish | D16: bolt-on foot plates or six modules a side |
+| P6 | Prices higher than estimated | Rigging and bearings estimated, not quoted | Cost above USD 2,905 | 3 | 2 | Design lead | Quotes at TRL 4; target margin USD 595 |
 
 ## Preliminary hazard analysis
 
@@ -42,13 +46,13 @@ The top risks are a kiln wall giving way under a track pad, a fall or a burn on 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | H1 | Fall from the deck into the kiln | Slip, lean on the rail, gate left open | Fatal burns | 5 | 2 | 1.1 m top rail, knee rail and toe board all round; inward-opening self-closing gate; guardrail checked at 1.5 kN (S5) | 1 to 2 after proof load |
 | H2 | Deck runs off the track or drops off it | Pushed past the end, wheel lifts | Deck and person fall onto the crust | 5 | 2 | End stops (S16), buffers, derailment guards | 1 |
-| H3 | Deck blown along the kiln | Pre-monsoon storm | Deck hits the stops or leaves the track | 5 | 3 | Storm clamps and tie-downs (D12, S20); working limit about 7 m/s (D11) | 2; anchors to confirm (S21) |
-| H4 | Wall gives way under a pad | Overload of an old wall | Track and deck drop | 5 | 2 | Pads at 0.15 MPa against an interim 0.20 MPa; survey | To confirm (S9) |
+| H3 | Deck blown along the kiln | Pre-monsoon storm | Deck hits the stops or leaves the track | 5 | 3 | Storm clamps and tie-downs (D12, S20); working limit 7 m/s and clamps at every shift end (D11, decided 2026-10-30) | 2; anchors to confirm (S21) |
+| H4 | Wall gives way under a pad | Overload of an old wall | Track and deck drop | 5 | 2 | Pads at 0.154 MPa (0.209 MPa at the rated load) against an interim 0.20 MPa; survey | To confirm (S9) |
 | H5 | Burns from hot surfaces | Floor at 74 °C in full sun, rails in the sun, parts near the crust | Burns to feet and hands | 3 | 4 | Insulated floor, grip sleeves, heat-resistant footwear | 3 until a canopy or shade |
 | H6 | Crushed fingers | Chains, sprockets, rotor, hand wheel spokes | Finger injury | 3 | 2 | Sheet guards and a sealed chain case; hopper grille; low crank force (S15) | 1 |
 | H7 | Deck moves while boarding or feeding | Lock pin out | Fall or trapped foot | 4 | 2 | Lock pin; gate at the hand wheel end | 2 |
 | H8 | Heat stress and smoke | Working over the fire in summer | Illness | 4 | 4 | Not controlled by the deck; shade, water and rest breaks stay necessary | 4 |
-| H9 | Strain carrying pieces up the kiln | 40 kg two-person carries | Back injury | 3 | 3 | Two people per piece; D14 proposes 33 kg | 3 until D14 |
+| H9 | Strain carrying pieces up the kiln | Two-person carries of up to 34.8 kg | Back injury | 3 | 3 | Two people per piece; 33 kg limit (D14) with the end truss modules 1.4 to 1.8 kg over | 3 until D16 |
 | H10 | Fall during assembly | Working at the wall edge | Fall into the trench | 5 | 2 | Assemble over the cold zone only (KND-BLD-001) | 2 |
 | H11 | Fire or hot gas flashback into the hopper or spout | Spout held over an open feed hole; hot gas and sparks rise from the fire | Burns to the fireman, coal in the hopper ignites | 4 | 2 | Grille and a swing spout lifted clear between holes; hopper filled only from the outer end; to assess with the partner (added after the independent review of 2026-10-29) | 3 |
 

@@ -181,3 +181,38 @@ Unchanged and added to: the deck carries a person over a burning kiln; nothing a
 ### Recommended next step
 
 Amish's decisions D10, D11 and D14, then the photoreal renders, `media/options.png` and cards on the Mac (the existing `render-*.png` and cards show the earlier model). TRL 4 (survey, proof load) stays on hold under the portfolio cap.
+
+## Session 2026-10-30: decisions
+
+### What is now decided
+
+Amish, 2026-10-30: "on the calls - i go with your recommendations". Recorded in `docs/decisions/0004-decisions-2026-10-30.md` (KND-DDR-004), `docs/decisions/0003-concept-selection.md` (accepted) and `docs/06-design-decisions.md` (KND-DEC-001 v0.3).
+
+- D10, concept choice: option A, the rolling bridge deck (152 of 190 against 124, 18 % apart, recommended). `concept_chosen: A` in `project.yaml`.
+- D11, wind working limit: (a) plus (b), work up to 7 m/s, clamp and tie down above it and at every shift end. The 200 N rim force is used up at 7.3 m/s on level track, so the margin is 0.3 m/s; on a 2 % grade it is about 5 m/s (a point for the partner survey).
+- D14, team-handling limit: (b), the HSE two-person guide of 33 kg, by five truss modules a side and 2.4 m track modules. PR-012 changes from 40 kg to 33 kg.
+
+### What changed
+
+- `cad/src/model.py`: `MODULES` 4 to 5, `TRACK_LEN` 3,000 to 2,400 mm, `TRACK_N` 5, `PAD_PITCH` 800 mm, new `DIAG_SHIFT` 4 mm (the shorter truss modules put a diagonal 5 mm3 into a splice bolt; moving the diagonal feet 4 mm cleared it). `cad/src/knd_option_a.py`, `build_plan_media.py`, `sheets.py` (GA Rev P3) and `concept_media.py` follow. Option A: 2,111 parts (585 made or bought, 1,025 fasteners, 501 welds), 1,265.5 kg (was 1,835, 515, 861, 459, 1,202.7). Option B unchanged. `cad/fidelity.json` passes; STEP and STL regenerated.
+- `bom/bom.csv`: USD 2,904.67 (was 2,786.97), 595.33 under the USD 3,500 target. Lines 1, 2, 6, 7, 8, 10, 11 and 17 changed in quantity; every added price is marked an estimate scaled from the earlier unit prices. `budget_usd` is unchanged.
+- `docs/04-calcs/sizing.py` and `KND-CAL-001` v0.3: deck 853 kg; wall pad pressure 0.154 MPa at working load and 0.209 MPa at the rated load (4.5 % over the interim 0.20 MPa, recorded); heaviest piece 34.8 kg; 7 m/s limit printed.
+- `docs/04-calcs/stem_check.py`, `stem_results.csv`, `docs/01b-stem-check.md` v0.3: 16 within, 10 plausible, 2 fail with a fix proposed (S17, S22), 0 fail.
+- `KND-PRS-001` v0.4 (PR-012 33 kg, not met; PR-016 2,400 mm; wind assumption), `KND-RSK-001`, 01-problem, 02-concept, 02a, 05-build-plan v0.3, 07, 08, 09, 10, 11 and README. `docs/03b-traceability.md` regenerated.
+
+### Shortfall: the recommendation did not reach 33 kg
+
+D14 expected every piece under 33 kg. The model gives track modules of 26.7 kg, but end truss modules of 34.4 kg (A) and 34.8 kg (B), because each carries two 10 mm foot plates of 1.9 kg. I recorded PR-012 as not met and S17 and S22 as fix proposed, and added D16. This does not change the working principle, pitch or scope, so it is a new proposal and not a stop.
+
+### Still open
+
+- D16 (new): (a) bolt-on foot plates, recommended, with no margin (the pieces then fall to about 33 kg); (b) six modules a side; (c) accept the 34.8 kg piece. Proposed, awaiting Amish.
+- D8, approach to a co-design partner: an action for Amish, not a proposal with a recommendation.
+
+### Pictures to re-render
+
+Option A's model changed. `media/options.png`, the photoreal renders (`render-*.png`) and the cards show the earlier model and need re-rendering by the coordinator. I did not run `options.py`, `photoreal.py`, `export_views.py` or `cards.py`. Drawings, build plan pictures and concept pictures were regenerated from the new model.
+
+### Process note
+
+During this session a `pkill -f` pattern meant for my own export also ended my shell and may have ended another job running the same `cad_check` command. No file was damaged; I reran my own export.

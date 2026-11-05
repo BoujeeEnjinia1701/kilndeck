@@ -142,19 +142,19 @@ def sheets(which=None):
     pads1 = m.comp_of([bx(x - 100, x + 100, -75, 75, 0, 10) for x in (100, 1100, 2100)])
     S[101] = lambda: sheet(101, m.comp_of([tm, fish, pads1]), "Track module", c["track"].color,
         [W("pads", "pads", (-4000, 4000, 3000, 3600, -10, 100)), W("truck_in", "truck", (-1000, 1000, 3000, 3600, 0, 400))],
-        "track module (make 8) with pads", "UPN 80 channel 3,000 mm; 20 mm round bar; 6 mm flat; 10 mm plate; S275",
-        ["Make eight. Saw UPN 80 channel 3,000 mm long, square ends. It lies",
+        "track module (make 10) with pads", "UPN 80 channel 2,400 mm; 20 mm round bar; 6 mm flat; 10 mm plate; S275",
+        ["Make ten, five a wall. Saw UPN 80 channel 2,400 mm long, square ends. It lies",
          "  flanges down: the flat 80 mm web on top, flanges on the pads.",
          "Rail: 20 mm round bar along the middle of the web, stitch welded",
          "  both sides, 40 mm welds every 250 mm. Grind the joint ends flush.",
          "  End modules: stop the bar 70 mm short of the outer end.",
          "Fishplates: 6 x 30 x 200 mm flat, one each side across each joint,",
          "  two M12 bolts in 14 x 24 mm slots so the joint can slide 6 mm.",
-         "Pads: 200 x 150 x 10 mm plate, one every 1,000 mm and under each",
+         "Pads: 200 x 150 x 10 mm plate, one every 800 mm and under each",
          "  joint, bedded level on a thin lime-sand mortar on the wall top.",
          "End stops: 8 mm plate box 60 x 80 x 200 mm, rubber face, two M12",
          "  bolts down through the web at each track end.",
-         "Check: bar straight within 2 mm over 3 m; tops of the two wall",
+         "Check: bar straight within 2 mm over 2.4 m; tops of the two wall",
          "  tracks level with each other within 5 mm."], inset=(25, -60),
         view_shape=m.comp_of([tm, fish, pads1]))
     S[102] = lambda: sheet(102, c["truck_out"].shape, "End truck", c["truck_out"].color,
@@ -176,9 +176,9 @@ def sheets(which=None):
          "Check: the four axle holes lie square and level within 1 mm."], inset=(25, -60))
     S[103] = lambda: sheet(103, m.truss_module(P, 1, 0), "Side truss module", c["truss_b"].color,
         [K("truss_a"), W("truss_b", "rest", (-1000, 1000, -1700, 4000, 0, 2000)), K("frame_bearers")],
-        "side truss module (make 8)", "SHS 40 x 40 x 3 and 4 mm; SHS 30 x 30 x 3 mm; 2 mm sheet; 6, 8, 10 mm plate; S275",
-        ["Make eight, four a side, on a flat jig. Drawn: side B end module.",
-         "Chords: SHS 40 x 40 x 3, 1,725 mm; centres 1,143 mm apart. The top",
+        "side truss module (make 10)", "SHS 40 x 40 x 3 and 4 mm; SHS 30 x 30 x 3 mm; 2 mm sheet; 6, 8, 10 mm plate; S275",
+        ["Make ten, five a side, on a flat jig. Drawn: side B end module.",
+         "Chords: SHS 40 x 40 x 3, 1,380 mm; centres 1,143 mm apart. The top",
          "  chord is the top rail, 1,100 mm above the floor.",
          "Verticals: SHS 40 x 40 x 4, 1,103 mm between the chords, flush with",
          "  each end. Diagonal and knee rail: SHS 30 x 30 x 3; knee rail 550",
@@ -190,15 +190,15 @@ def sheets(which=None):
          "  each end, reaching 40 mm below it, four 13 mm holes.",
          "End modules: 10 mm foot plate 150 x 160 mm under the chord.",
          "Side B: 6 mm shelf brackets for the carriage rail on both verticals.",
-         "Check: flat within 3 mm; about 39 kg (two people)."], inset=(22, -50))
+         "Check: flat within 3 mm; about 35 kg (two people)."], inset=(22, -50))
     S[104] = lambda: sheet(104, m.comp_of([m.bearer(P, 0, "frame"), b.Pos(0, 200, 0) * m.bearer(P, 0, "panel")]),
         "Bearers", c["frame_bearers"].color, [W("truss_a", "a", (-700, 700, -300, 300, 0, 800)), W("truss_b", "b", (-700, 700, -300, 300, 0, 800))],
-        "frame bearer (make 5) and panel bearer (make 4)", "RHS 60 x 40 x 4 mm; SHS 40 x 40 x 3 mm; 8 mm plate; S275",
+        "frame bearer (make 6) and panel bearer (make 5)", "RHS 60 x 40 x 4 mm; SHS 40 x 40 x 3 mm; 8 mm plate; S275",
         ["Frame bearer (back in the sketch): RHS 60 x 40 x 4, 1,048 mm, with an",
          "  8 x 80 x 80 mm end plate welded on each end: overall 1,064 mm.",
          "  Four 13 mm holes per end plate, 20 mm in from each edge; they",
          "  match the cleats on the trusses. M12 grade 8.8 bolts.",
-         "  The frame bearers sit at both deck ends and at the three splices,",
+         "  The frame bearers sit at both deck ends and at the four splices,",
          "  and make each pair of verticals and the floor a stiff U-frame.",
          "Panel bearer (front): SHS 40 x 40 x 3, 1,080 mm, top flush with the",
          "  chord tops; held by 50 x 50 x 5 angle cleats and 2 x M10 each end.",
@@ -208,9 +208,9 @@ def sheets(which=None):
     pl = m.panel_bounds()[1]
     S[105] = lambda: sheet(105, m.floor_panel(P, pl[0], pl[1]), "Floor panel", c["panels"].color,
         [K("panel_bearers"), K("frame_bearers"), W("truss_a", "a", (-700, 700, -3500, 0, 0, 800))],
-        "insulated floor panel (make 8)", "40 x 40 x 4 angle; 2 mm steel sheet; 37 mm calcium silicate board; 1 mm aluminium",
-        ["Make eight, 1,070 mm across the deck by about 858 mm (end panels",
-         "  818 mm). Panel 1 at the gate end has a 86 x 46 mm notch for the",
+        "insulated floor panel (make 10)", "40 x 40 x 4 angle; 2 mm steel sheet; 37 mm calcium silicate board; 1 mm aluminium",
+        ["Make ten, 1,070 mm across the deck by about 686 mm (end panels",
+         "  643 mm). Panel 2 from the gate end has a 86 x 46 mm notch for the",
          "  hand wheel chain case.",
          "Frame: 40 x 40 x 4 angle welded into a rectangle, legs inward.",
          "Underside: 1 mm aluminium sheet riveted under the frame, bright side",
@@ -220,7 +220,7 @@ def sheets(which=None):
          "  anti-slip coating. Drill two 10 mm drain holes at the low corner.",
          "Fit: rests on two bearers, 2 mm gap to the next panel and 5 mm to",
          "  the toe boards; two M8 bolts each end into the bearers.",
-         "Check: about 30 kg; flat within 3 mm; no gap in the board."], inset=(30, -60))
+         "Check: about 25 kg; flat within 3 mm; no gap in the board."], inset=(30, -60))
     posts, leaf = m.end_frame(P, -1, gate=True)
     S[106] = lambda: sheet(106, m.comp_of([posts, leaf]), "Outer end gate", c["gate"].color,
         [W("truss_a", "a", (-700, 700, -3500, -2500, 0, 2000)), W("truss_b", "b", (-700, 700, -3500, -2500, 0, 2000)),
@@ -257,8 +257,8 @@ def sheets(which=None):
     crl = win(c["crail"].shape, 0, 2000, -3460, -1720, 0, 2000)
     S[108] = lambda: sheet(108, crl, "Carriage rail", c["crail"].color,
         [W("truss_b", "b", (0, 1000, -3500, -1500, 0, 2000)), W("carriage", "car", (0, 2000, -3500, 3500, 0, 2000))],
-        "carriage rail (make 4)", "SHS 40 x 40 x 3 mm; 20 x 40 x 40 mm block; S275",
-        ["Make four, one per side B truss module, 1,723 mm long.",
+        "carriage rail (make 5)", "SHS 40 x 40 x 3 mm; 20 x 40 x 40 mm block; S275",
+        ["Make five, one per side B truss module, 1,378 mm long.",
          "It sits on the shelf brackets of the module's end verticals, 20 mm",
          "  out from them, top 750 mm above the floor; two M10 bolts down",
          "  through each bracket.",
@@ -371,7 +371,7 @@ def joints(which=None):
                       "End chain drive", "The line shaft passes through the truck to a sprocket; a chain drives the wheel next to it", elev=20, azim=-70)
     hw = m.handwheel_geometry()
     J[7] = lambda: jt(7, [W("handwheel", "Hand wheel, chain case, lock pin", (100, 620, hw["y"] - 120, hw["y"] + 160, 150, 1500)),
-                          W("panels", "Floor panel 1, notched", (100, 620, hw["y"] - 120, hw["y"] + 160, 150, 1500)),
+                          W("panels", "Floor panel 2, notched", (100, 620, hw["y"] - 120, hw["y"] + 160, 150, 1500)),
                           W("shaft", "Line shaft", (100, 620, hw["y"] - 120, hw["y"] + 160, 150, 1500)),
                           W("frame_bearers", "End frame bearer", (100, 620, hw["y"] - 900, hw["y"] + 160, 150, 1500))],
                       "Hand wheel and chain case", "The sealed case carries the chain down through the floor notch to the line shaft",
@@ -409,7 +409,7 @@ def steps(which=None):
     trucks = [K("truck_out"), K("truck_in"), K("wheels")]
     base = [pads, track] + trucks
     E[1] = lambda: st(1, [], [W("pads", "Levelling pads", TW, explode=(0, 0, 250))], "levelling pads on both wall tops",
-                      "Every 1.0 m on each wall, 6.6 m apart centre to centre, bedded and levelled across the trench", elev=30, azim=-35)
+                      "Every 0.8 m on each wall and under each joint, 6.6 m apart centre to centre, bedded and levelled across the trench", elev=30, azim=-35)
     E[2] = lambda: st(2, [pads], [W("track", "Track modules", TW, explode=(0, 0, 250))], "track modules and fishplates",
                       "Flanges down on the pads; bar on top; 6 mm gaps, fishplates in slots; gauge 6,600 mm", elev=30, azim=-35)
     ew = (4500, 6100, -4000, 4000, -10, 400)
@@ -418,9 +418,9 @@ def steps(which=None):
     E[4] = lambda: st(4, [pads, track], [K("truck_out", "Outer end truck", (0, 0, 350)), K("truck_in", "Inner end truck", (0, 0, 350)),
                                          K("wheels", "Wheels", (0, 0, 350))],
                       "end trucks onto the tracks", "Wheels on, trucks set on the bars over the cold zone; tie them square with a temporary gauge bar", elev=28, azim=-40)
-    E[5] = lambda: st(5, base, [K("truss_a", "Side truss A, four modules", (0, 0, 400))], "side truss A",
-                      "On trestles: bolt the four modules at the splices, then lower the feet onto the seats", elev=24, azim=-40, label_done=False)
-    E[6] = lambda: st(6, base + [K("truss_a")], [K("truss_b", "Side truss B, four modules", (0, 0, 400))], "side truss B",
+    E[5] = lambda: st(5, base, [K("truss_a", "Side truss A, five modules", (0, 0, 400))], "side truss A",
+                      "On trestles: bolt the five modules at the splices, then lower the feet onto the seats", elev=24, azim=-40, label_done=False)
+    E[6] = lambda: st(6, base + [K("truss_a")], [K("truss_b", "Side truss B, five modules", (0, 0, 400))], "side truss B",
                       "The same on the other side; feet on the seats, eight M12 bolts at each end", elev=24, azim=-40, label_done=False)
     frame = base + [K("truss_a"), K("truss_b")]
     E[7] = lambda: st(7, frame, [K("frame_bearers", "Frame bearers", (0, 0, 500)), K("panel_bearers", "Panel bearers", (0, 0, 500))],
@@ -440,10 +440,10 @@ def steps(which=None):
                        "Sprockets keyed on the shaft and drive axles; chains on; guards bolted over", elev=-20, azim=-40, label_done=False)
     frame5 = frame4 + [K("shaft"), K("end_drives")]
     E[12] = lambda: st(12, frame5, [K("handwheel", "Hand wheel, chain case, lock pin", (0, 0, 600))], "hand wheel",
-                       "Case down through the notch in panel 1, onto the line shaft; wheel 860 mm above the floor", elev=28, azim=-40, label_done=False)
+                       "Case down through the notch in panel 2, onto the line shaft; wheel 860 mm above the floor", elev=28, azim=-40, label_done=False)
     frame6 = frame5 + [K("handwheel")]
     E[13] = lambda: st(13, frame6, [K("crail", "Carriage rail", (500, 0, 0))], "carriage rail",
-                       "Four lengths on the shelf brackets on side B, joints flush", elev=24, azim=-40, label_done=False)
+                       "Five lengths on the shelf brackets on side B, joints flush", elev=24, azim=-40, label_done=False)
     frame7 = frame6 + [K("crail")]
     E[14] = lambda: st(14, zoom(frame7), [K("carriage", "Hopper carriage frame", (0, 0, 500))], "carriage frame",
                        "Lower it so the wheels sit on the rail and the rollers touch the chord; clamp it", elev=24, azim=-40, label_done=False)
@@ -465,7 +465,7 @@ def steps(which=None):
     E[17] = lambda: st(17, frame8 + [K("hopper"), K("rotor")], [K("spout", "Swing spout", (0, 0, -300))], "swing spout",
                        "Push the collar up onto the outlet lip and fit its retaining ring", elev=24, azim=-40, label_done=False)
     E[18] = lambda: st(18, base, [storm((0, 0, 250))], "storm clamps and tie-downs",
-                       "A screw clamp at each wheel, a lashing chain from each truck beam to a screw anchor beyond the kiln wall; set when a storm threatens and at every shift end",
+                       "A screw clamp at each wheel, a lashing chain from each truck beam to a screw anchor beyond the kiln wall; set above 7 m/s of wind, when a storm threatens and at every shift end",
                        elev=30, azim=-40, label_done=False)
     for n in sorted(E):
         if which and n not in which:

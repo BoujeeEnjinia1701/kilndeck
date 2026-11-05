@@ -30,26 +30,27 @@ bb = asm.bounding_box()
 work = ROOT / "cad/drawings/_views"
 views = project_views(asm, work)
 s = Sheet(project="KilnDeck", title="Rolling fuel-feeding deck: general arrangement", dwg_no="KND-DWG-001",
-          rev="P2", author="Amish Chadha", date="2026-10-28", concept=True, scale=None,
+          rev="P3", author="Amish Chadha", date="2026-10-30", concept=True, scale=None,
           material="S275 hollow sections, channel and plate; calcium silicate board; aluminium sheet. See bom/bom.csv",
           revisions=[("P1", "Preliminary GA from the constructable TRL 3 model (KND-DDR-002)", "2026-10-03", "AC"),
-                     ("P2", "Storm clamps and lashing lugs (D12); deeper bearer cleats, end flange bearings (D13)", "2026-10-28", "AC")])
+                     ("P2", "Storm clamps and lashing lugs (D12); deeper bearer cleats, end flange bearings (D13)", "2026-10-28", "AC"),
+                     ("P3", "Five truss modules a side and 2.4 m track modules for the 33 kg team limit (D14, 2026-10-30)", "2026-10-30", "AC")])
 s.add_ortho(views, ["front", "top", "right"])
-s.add_svg(views["iso"], 276, 57, 140, 62, label="Isometric view", sublabel="Not to scale; track shown 3 m long")
+s.add_svg(views["iso"], 276, 57, 140, 62, label="Isometric view", sublabel="Not to scale; track shown 2.4 m long")
 s.add_notes("Key dimensions (mm) and data", [
     f"Track centres {P['GAUGE']:.0f} across a {P['TRENCH']:.0f} trench (to survey)",
     f"Deck {P['BRIDGE_L']:.0f} long, {2 * P['TRUSS_X'] + P['CHORD'][0]:.0f} wide over the trusses",
     f"Wheelbase {P['WHEELBASE']:.0f}; 100 mm U-groove wheels on 20 mm bar",
     f"Rail top {L['rail_top']:.0f}, floor {L['floor']:.0f} above the wall top",
     f"Top rail {P['RAIL_H']:.0f}, knee rail {P['KNEE_H']:.0f}, toe board {P['TOE'][0]:.0f} above floor",
-    f"Four truss modules a side, {P['BRIDGE_L'] / P['MODULES']:.0f} long, 6 x M12 per splice",
-    f"Floor: 8 panels, 2 steel / 37 board / 1 aluminium",
+    f"Five truss modules a side, {P['BRIDGE_L'] / P['MODULES']:.0f} long, 6 x M12 per splice",
+    f"Floor: 10 panels, 2 steel / 37 board / 1 aluminium",
     f"Line shaft 25 dia at {P['SHAFT'][2]:.0f}; hand wheel {P['HANDWHEEL'][0]:.0f} dia",
     f"Carriage rail top {L['crail1']:.0f}; carriage travel +/-{P['CARRIAGE_LIMIT']:.0f}",
     f"Hopper 450 x 450, about 52 L; rotor {P['ROTOR'][0]:.0f} dia x {P['ROTOR'][1]:.0f}",
     f"Spout outlet {G['spout_x'] - 0:.0f} from deck centre line, {P['SPOUT_Z']:.0f} up",
     f"Crank at {G['crank_z']:.0f}, over the top rail",
-    "Deck about 810 kg; no piece over 40 kg; storm clamps at each wheel",
+    "Deck about 853 kg; pieces up to 35 kg (33 kg limit); storm clamps at each wheel",
     "PRELIMINARY, NOT FOR FABRICATION",
 ], x=276, y=130, width=140)
 s.save(ROOT / "cad/drawings/KND-DWG-001")

@@ -3,9 +3,9 @@ doc_id: KND-DDR-003
 title: KilnDeck concept selection
 project: KilnDeck
 doc_type: Design decision record
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,12 +13,16 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: Concept selection between option A (rolling bridge deck) and option B (wall-top cableway); proposed, awaiting Amish
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Option A decided by Amish on 2026-10-30 (KND-DEC-001 D10, KND-DDR-004); status accepted"
 ---
 
 # 0003: Concept selection
 
 - **Date:** 2026-10-28
-- **Status:** proposed, awaiting Amish (KND-DEC-001 D10).
+- **Status:** accepted. Amish, 2026-10-30: "on the calls - i go with your recommendations" (KND-DEC-001 D10; KND-DDR-004). Option A.
 
 ## Context
 
@@ -33,10 +37,10 @@ A third principle was considered and not modelled: long-handled tools or chutes 
 
 ## Decision
 
-Recommended: option A. It is 18 % ahead (outside the 10 % band that would send both to Amish without a pick), it protects against falls with a full guardrail where option B leaves the fireman at the trench edge of the wall top, it doses fuel rather than dumping a bucket, and it carries the complete TRL 3 record. Option B's advantages are cost (about USD 900 against USD 2,787, an estimate) and keeping the fireman off the fire's radiant heat. The runner-up idea worth grafting later: a small wall-top cableway for the curved kiln ends that option A does not serve.
+Decided by Amish on 2026-10-30: option A, as recommended. The recommendation was: option A. It is 18 % ahead (outside the 10 % band that would send both to Amish without a pick), it protects against falls with a full guardrail where option B leaves the fireman at the trench edge of the wall top, it doses fuel rather than dumping a bucket, and it carries the complete TRL 3 record. Option B's advantages are cost (about USD 900 against USD 2,787, an estimate) and keeping the fireman off the fire's radiant heat. The runner-up idea worth grafting later: a small wall-top cableway for the curved kiln ends that option A does not serve.
 
 ## Consequences
 
-- If Amish confirms option A: `concept_chosen: A` in `project.yaml`; nothing else changes.
+- Option A confirmed on 2026-10-30: `concept_chosen: A` in `project.yaml`; nothing else changes.
 - If Amish chooses option B: the drawing, BOM, calculation note and build plan are redone for option B at TRL 3 (a new session).
 - Either way the open items stay: the partner kiln survey (S9, S21), the team-handling question (D14) and the TRL 4 dose and floor temperature trials.

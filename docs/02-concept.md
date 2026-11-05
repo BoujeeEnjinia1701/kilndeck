@@ -3,9 +3,9 @@ doc_id: KND-PRC-001
 title: KilnDeck design precis
 project: KilnDeck
 doc_type: Precis
-version: "0.3"
+version: "0.4"
 status: Draft
-date: '2026-10-29'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -21,6 +21,10 @@ revisions:
   date: '2026-10-29'
   author: Amish Chadha
   change: Kit 1.9.1 upgrade; numbers refreshed from KND-CAL-001 v0.2 (storm clamps and tie-downs, KND-DEC-001 D12; fits, D13); the design is option A of KND-OPT-001
+- version: "0.4"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Option A decided (KND-DEC-001 D10); 33 kg piece limit with five truss modules a side and 2.4 m track modules (D14); numbers from KND-CAL-001 v0.3"
 ---
 
 # KilnDeck design precis
@@ -41,8 +45,8 @@ The deck is a walkway bridge that spans the trench from the outer wall to the in
 
 | # | Component | Role |
 | --- | --- | --- |
-| 1 | Levelling pads | Spread the track load on the wall tops, one every 1.0 m |
-| 2 | Track modules | 3 m lengths of channel with a round bar rail, joined by sliding fishplates |
+| 1 | Levelling pads | Spread the track load on the wall tops, one every 0.8 m and under each joint |
+| 2 | Track modules | 2.4 m lengths of channel with a round bar rail, joined by sliding fishplates |
 | 3 | Track end stops | Stop the deck at the ends of each track run |
 | 4 | End trucks | Carry the deck ends on the tracks, with derailment guards and buffers |
 | 5 | Track wheels | U-groove wheels: the outer pair guides, the inner pair floats |
@@ -63,12 +67,12 @@ The deck is a walkway bridge that spans the trench from the outer wall to the in
 All decided by Amish under his pre-approval of 2026-10-03 (KND-DDR-001 and KND-DDR-002).
 
 1. **The deck spans the trench and bears only on the walls.** It reaches every hole by moving along the kiln, so no support ever stands on the crust.
-2. **Movable track on the straight sides.** 3 m modules, about 33 kg each, are laid ahead of the fire and lifted behind it. The curved ends are not served by this prototype.
+2. **Movable track on the straight sides.** 2.4 m modules, about 27 kg each, are laid ahead of the fire and lifted behind it. The curved ends are not served by this prototype.
 3. **The guardrail is the structure.** Two trusses 1.14 m deep carry the floor across 6.6 m, and their top chords are the top rails.
 4. **Both ends driven together.** A hand wheel and line shaft stop the long deck skewing on its short wheelbase.
 5. **Fuel beside the deck, not under it.** The hopper carriage feeds the next row of holes, so the floor has no openings over the fire and the fireman's feet stay at least 0.6 m from an open hole.
 6. **Coal or biomass.** One rotor; the dose is set by the number of pockets.
-7. **No piece over 40 kg.** Every module is carried up by two people and bolted together on the kiln, over the cold zone.
+7. **No piece over 33 kg (the HSE two-person guide; KND-DEC-001 D14, decided 2026-10-30).** Every module is carried up by two people and bolted together on the kiln, over the cold zone. Five truss modules a side and 2.4 m track modules meet it except the two end truss modules (34.4 and 34.8 kg, KND-DEC-001 D16).
 
 ## First-order numbers
 
@@ -81,13 +85,13 @@ From KND-CAL-001 (`docs/04-calcs/sizing.py`). All are estimates for a design tha
 | Coal per fireman per round | about 30 kg | 30,000 bricks a day, 1.2 MJ per kg of brick, 22 MJ/kg coal, a round every 17.5 min, two firemen |
 | Hopper | 52 L, about 42 kg of coal or 13 kg of biomass; 1.4 rounds per fill | Bulk density 0.80 and 0.25 kg/L |
 | Dose | about 0.49 kg of coal per pocket, 1.97 kg per turn | 80 % pocket fill |
-| Deck mass | about 810 kg; heaviest piece 39.8 kg (limit 40 kg) | From the model solids |
+| Deck mass | about 853 kg; heaviest piece 34.8 kg (limit 33 kg: not met by the end truss modules) | From the model solids |
 | Bridge | 11 MPa in the chords, 0.5 mm deflection | 250 kg rated load at mid-span, 1.25 dynamic factor |
 | Guardrail | 91 to 100 MPa under a 1 kN push; 150 MPa at the 1.5 kN proof load | S275 steel, yield 275 MPa |
-| Hand wheel force | 65 N on level track | Rolling resistance 2 % |
-| Wall bearing | 0.15 MPa under a pad | Interim limit 0.20 MPa until the survey |
+| Hand wheel force | 68 N on level track | Rolling resistance 2 % |
+| Wall bearing | 0.154 MPa under a pad | Interim limit 0.20 MPa until the survey |
 | Floor top temperature | 34 °C at night, 48 °C in shade, 74 °C in full sun at 45 °C air | Crust 150 °C; the bare crust is the comparison |
-| Parts cost | USD 2,787 | Value-engineering target: USD 3,500. Estimated cost of the constructable design: USD 2,787 (USD 713 under the target), including USD 160 (estimate) of storm clamps and tie-downs (KND-DEC-001 D12) |
+| Parts cost | USD 2,905 | Value-engineering target: USD 3,500. Estimated cost of the constructable design: USD 2,905 (USD 595 under the target), including USD 160 (estimate) of storm clamps and tie-downs (KND-DEC-001 D12) |
 
 ## Patent design-arounds
 

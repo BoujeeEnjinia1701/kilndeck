@@ -3,9 +3,9 @@ doc_id: KND-PRB-001
 title: KilnDeck problem statement
 project: KilnDeck
 doc_type: Problem statement
-version: "0.3"
+version: "0.4"
 status: Draft
-date: '2026-10-03'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -21,6 +21,10 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: Kit 1.8 users-and-needs and stakeholders tables (Tables 1a and 1b), source of the user requirements KND-URS-001
+- version: "0.4"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Piece limit 33 kg (KND-DEC-001 D14, decided 2026-10-30)"
 ---
 
 # KilnDeck problem statement
@@ -78,7 +82,7 @@ Existing improvements target fuel, not footing. Stanford's Luby Lab and BUET bui
 - Manual only: no motor; the deck is moved and the fuel is metered by hand.
 - Track and supports bear only on sound kiln walls, never on the crust, within a bearing limit set by a survey of each kiln.
 - Buildable with hand tools, a drill and a small stick welder from stock steel sections.
-- Every piece carried up the kiln weighs 40 kg (88 lb) or less, so two people can carry it.
+- Every piece carried up the kiln weighs 33 kg (73 lb) or less, the HSE two-person guide, so two people can carry it (KND-DEC-001 D14, decided 2026-10-30; the end truss modules are still 34.4 and 34.8 kg, see D16).
 - Open design: hardware under CERN-OHL-S-2.0, any calculators under MIT.
 
 > **Safety:** The deck carries a person over a burning kiln. A fall through the guardrail, a deck running off its track, a crushed hand in the drive or the rotor, and heat on the feet are the hazards this design must control. It is published as an open engineering reference, not certified equipment; kiln owners and builders are responsible for their own structural checks and risk assessment.

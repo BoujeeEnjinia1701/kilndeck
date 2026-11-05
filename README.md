@@ -4,7 +4,7 @@
 
 ![TRL 3](https://img.shields.io/badge/TRL-3%20of%209-0F766E) ![Hardware: CERN-OHL-S-2.0](https://img.shields.io/badge/hardware-CERN--OHL--S--2.0-111827) ![Software: MIT](https://img.shields.io/badge/software-MIT-111827) [![REUSE compliant](https://github.com/BoujeeEnjinia1701/kilndeck/actions/workflows/reuse.yml/badge.svg)](https://github.com/BoujeeEnjinia1701/kilndeck/actions/workflows/reuse.yml) [![Archived in Software Heritage](https://archive.softwareheritage.org/badge/origin/https://github.com/BoujeeEnjinia1701/kilndeck/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/BoujeeEnjinia1701/kilndeck) [![DOI](https://zenodo.org/badge/{"message":"GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:\"push\" to attach the repository with credentials.","documentation_url":"https://docs.anthropic.com/en/docs/claude-code/github-actions"}.svg)](https://zenodo.org/badge/latestdoi/{"message":"GitHub access to this repository is not enabled for this session. Use add_repo to request access. If add_repo answers that read access is already available and you need GitHub API or write access, call add_repo again with access:\"push\" to attach the repository with credentials.","documentation_url":"https://docs.anthropic.com/en/docs/claude-code/github-actions"})
 
-**Area:** Sustainable housing · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** USD 3,500 (estimated cost of the constructable design USD 2,787) · **Difficulty:** 4 of 5
+**Area:** Sustainable housing · **TRL:** 3 of 9 (proof of concept on paper) · **Value-engineering target:** USD 3,500 (estimated cost of the constructable design USD 2,905) · **Difficulty:** 4 of 5
 
 Carries kiln firemen on a railed rolling deck so they feed fuel without standing on the ash crust over the fire.
 
@@ -61,13 +61,13 @@ Full design precis: [docs/02-concept.md](docs/02-concept.md) · STEM check: [doc
 
 ## STEM check
 
-Every physical and biological claim KilnDeck makes was checked against known science, and an independent reviewer tried to refute each verdict ([KND-STM-001](docs/01b-stem-check.md)). Nothing fails outright. Of 28 claims, 15 are within known science and 12 stay plausible until the partner kiln survey, a trial assembly or a TRL 4 trial (dose repeatability, wall bearing, lock pin friction, crank jamming, piece mass tolerance, floor board strength, fit-up, storm hold and anchor pull-out, wind uplift, and two of option B). Three rows failed or were refuted and were fixed under Amish's standing instruction: a parked deck would blow along the kiln in a pre-monsoon storm (storm clamps and tie-downs added), the first part-by-part model had parts that could not be fitted (fits corrected), and the wheels did not cover the 250 kg rated load (650 kg wheels). One row, two-person handling of the 40 kg pieces against the HSE team guide of about 33 kg, is a safety trade-off on a decided constraint and goes to Amish. The 50 °C floor target is not met in full summer sun (74 °C, or 93 °C with a coal-dusted top).
+Every physical and biological claim KilnDeck makes was checked against known science, and an independent reviewer tried to refute each verdict ([KND-STM-001](docs/01b-stem-check.md)). Two rows fail with a fix proposed. Of 28 claims, 16 are within known science and 10 stay plausible until the partner kiln survey, a trial assembly or a TRL 4 trial (dose repeatability, wall bearing, lock pin friction, crank jamming, floor board strength, fit-up, storm hold and anchor pull-out, and two of option B). Three rows failed or were refuted and were fixed under Amish's standing instruction: a parked deck would blow along the kiln in a pre-monsoon storm (storm clamps and tie-downs added), the first part-by-part model had parts that could not be fitted (fits corrected), and the wheels did not cover the 250 kg rated load (650 kg wheels). Two rows, S17 and S22, fail with a fix proposed: on 2026-10-30 Amish set the carrying limit to the HSE two-person guide of 33 kg (shorter modules), and the two end truss modules weigh 34.4 and 34.8 kg, so the foot plates or the module count are put to him as D16. The 50 °C floor target is not met in full summer sun (74 °C, or 93 °C with a coal-dusted top).
 
 ## Concept options
 
 ![The two concept options side by side at one scale](media/options.png)
 
-Two working principles were compared against the user requirements ([KND-OPT-001](docs/02a-concept-options.md)): the rolling bridge deck described above (option A, the current design) and a wall-top cableway that sends a bucket out on a rope between two guyed masts (option B). Option A scores 152 of 190 against 124 for option B, 18 % apart, and is recommended; the choice is proposed, awaiting Amish. Both are modelled part by part in `cad/src/model.py` (option A: 1,835 parts and 1,203 kg; option B: 252 parts and 260 kg; `cad/fidelity.json`).
+Two working principles were compared against the user requirements ([KND-OPT-001](docs/02a-concept-options.md)): the rolling bridge deck described above (option A, chosen by Amish on 2026-10-30) and a wall-top cableway that sends a bucket out on a rope between two guyed masts (option B). Option A scores 152 of 190 against 124 for option B, 18 % apart, and was chosen by Amish on 2026-10-30 (KND-DDR-003). Both are modelled part by part in `cad/src/model.py` (option A: 2,111 parts and 1,266 kg; option B: 252 parts and 260 kg; `cad/fidelity.json`).
 
 ## Key components
 
@@ -81,8 +81,8 @@ Two working principles were compared against the user requirements ([KND-OPT-001
 
 ## Key numbers (estimates, KND-CAL-001)
 
-- Deck about 810 kg; no piece over 40 kg, so two people carry every part up the kiln.
-- Hand wheel force about 65 N to move the loaded deck on level track.
+- Deck about 853 kg; pieces up to 35 kg against a 33 kg two-person limit (the end truss modules, KND-DEC-001 D16 open); all others are 33 kg or less.
+- Hand wheel force about 68 N to move the loaded deck on level track.
 - About 0.49 kg of coal per rotor pocket; the hopper holds about 1.4 feeding rounds.
 - Floor top about 48 °C in shade against a crust of about 150 °C; about 74 °C in full summer sun (requirement R7 not met in full sun).
 

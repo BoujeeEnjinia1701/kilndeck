@@ -3,9 +3,9 @@ doc_id: KND-PLN-001
 title: KilnDeck project plan
 project: KilnDeck
 doc_type: Project plan
-version: "0.1"
+version: "0.2"
 status: Draft
-date: '2026-10-28'
+date: '2026-10-30'
 author: Amish Chadha
 license: CERN-OHL-S-2.0
 revisions:
@@ -13,11 +13,15 @@ revisions:
   date: '2026-10-28'
   author: Amish Chadha
   change: First issue (kit 1.8 upgrade)
+- version: "0.2"
+  date: '2026-10-30'
+  author: Amish Chadha
+  change: "Decisions D10, D11 and D14 decided on 2026-10-30; D16 proposed"
 ---
 
 # KilnDeck project plan
 
-KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfolio cap; the next gate, P4 verification, needs Amish's go, a co-design partner and the decisions D10, D11 and D14. Method: STANDARDS sections 19 and 23.
+KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfolio cap; the next gate, P4 verification, needs Amish's go, a co-design partner and the decision D16 (end truss module mass). D10, D11 and D14 were decided on 2026-10-30. Method: STANDARDS sections 19 and 23.
 
 ## Workstreams
 
@@ -27,7 +31,7 @@ KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfo
 | --- | --- | --- | --- |
 | Design and calculations | Design lead | Model, CAL, drawings, BOM, build plan | Done at P3 |
 | Pipeline documents | Design lead | STM, OPT, URS, PRS, RTM, REG, FEA, RSK, MKT, PLN | Done at P3 (kit 1.9.1) |
-| Decisions | Amish | D10 concept, D11 wind limit, D14 team handling | Awaiting Amish |
+| Decisions | Amish | D10 concept, D11 wind limit, D14 team handling decided 2026-10-30; D16 end module mass | D16 awaiting Amish |
 | Co-design partner | Amish | Agreement with a clean-kiln programme or owners' association | Not started (KND-DDR-001, D8) |
 | Kiln survey | Structural engineer with the partner | Trench, walls, bearing limit, feed hole grid, crust temperature, yard soil | Planned, on hold (P4) |
 | Proof load and trials | Test lead | CalRig proof of guardrail, deck and track; dose weighing; floor temperature log | Planned, on hold (P4) |
@@ -39,7 +43,7 @@ KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfo
 | Resource | Deliverable | Effort | Estimated cost (USD) |
 | --- | --- | --- | --- |
 | Structural engineer (local) | Wall survey and bearing limit | 2 days on site | to assess |
-| Fabricator | Prototype deck and 24 m of track | about 3 weeks | 2,787 parts, labour to assess |
+| Fabricator | Prototype deck and 24 m of track | about 3 weeks | 2,905 parts, labour to assess |
 | Test lead with CalRig | Proof load and first checks | 1 week | to assess |
 | Partner field staff | Firemen interviews and a trial season | 1 season | to assess |
 
@@ -51,7 +55,7 @@ KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfo
 | --- | --- | --- |
 | P0 Proposal | PRB, STM, OPT, REG, FEA, PLN | Done |
 | P1 Definition | URS, PRS, RSK, MKT | Done |
-| P2 Design inputs | PRS targets, CAL, RTM, concept selection DDR | Done; selection awaiting Amish (D10) |
+| P2 Design inputs | PRS targets, CAL, RTM, concept selection DDR | Done; option A selected by Amish on 2026-10-30 (D10) |
 | P3 Design outputs | Model at D3, STEP, drawings, priced BOM, BLD, DEC, design FMEA | Done (2026-10-28) |
 | P4 Verification | Survey, proof load, dose and temperature tests (TST) | On hold (cap) |
 | P5 Validation | Field trial with firemen in a firing season | On hold (cap) |
@@ -59,7 +63,7 @@ KilnDeck is at stage P3 (design outputs, TRL 3) and stops there under the portfo
 
 ## Next steps and decision requested
 
-1. Amish: decide D10 (concept, recommended A), D11 (wind working limit) and D14 (team-handling limit).
+1. Amish: decide D16 (how to bring the end truss modules under 33 kg). D10, D11 and D14 were decided on 2026-10-30.
 2. Amish: decide whether to approach the first co-design candidate.
 3. Then, on Amish's go only: the P4 survey and proof load.
 

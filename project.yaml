@@ -6,9 +6,9 @@ area: Sustainable housing
 trl: 3                   # Technology Readiness Level, see .kit/STANDARDS.md section 9
 trl_target: 3
 stage: P3                # pipeline stage, STANDARDS section 19; P0 to P3 on 2026-10-28 (kit 1.9.1 upgrade)
-stem_check: open         # KND-STM-001 v0.1: S3, S9, S18, S21 plausible until the partner kiln survey or a TRL 4 trial; S22 (team handling) fix goes to Amish (KND-DEC-001 D14)
+stem_check: open         # KND-STM-001 v0.3: S3, S9, S11, S15, S18 to S21 plausible until the partner kiln survey or a TRL 4 trial; S17 and S22 (piece mass, 33 kg) fail with a fix proposed to Amish (KND-DEC-001 D16)
 concept_options: [A, B]  # KND-OPT-001
-concept_chosen: A (proposed)   # option A recommended, awaiting Amish (KND-DEC-001 D10, KND-DDR-003)
+concept_chosen: A   # option A chosen by Amish on 2026-10-30 (KND-DEC-001 D10, KND-DDR-003)
 design_state: constructable   # STANDARDS section 18; made constructable 2026-10-03 (KND-DDR-002)
 trl_evidence:
   - docs/01-problem.md
@@ -51,6 +51,7 @@ trl_evidence:
   - docs/10-market.md
   - docs/11-plan.md
   - docs/decisions/0003-concept-selection.md
+  - docs/decisions/0004-decisions-2026-10-30.md
   - docs/REVIEW.md
   - cad/src/build_plan_media.py
 shortlisted: false
@@ -58,7 +59,7 @@ pitch: >-
   Carries kiln firemen on a railed rolling deck so they feed fuel without standing on the ash crust over the fire.
 problem: >-
   Firemen on bull's trench brick kilns stand and walk on the hot ash crust over the fire to feed fuel through holes in the kiln top, for hours at a time. A slip or a weak spot in the crust can drop them into the burning kiln.
-budget_usd: 3500  # value-engineering target (STANDARDS section 18); estimated cost of the constructable design USD 2,787
+budget_usd: 3500  # value-engineering target (STANDARDS section 18); estimated cost of the constructable design USD 2,905
 difficulty: 4  # 1 easiest, 5 hardest
 hero_image: media/hero.png
 licenses:
